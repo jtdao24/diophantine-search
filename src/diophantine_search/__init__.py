@@ -1,0 +1,1 @@
+"""Exact integer definitions for Diophantine search."""

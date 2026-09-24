@@ -1,0 +1,1 @@
+"""Definitions for individual Diophantine equation families."""

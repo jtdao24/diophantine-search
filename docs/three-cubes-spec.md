@@ -1,0 +1,52 @@
+# Three cubes: correctness contract
+
+## 1. Equation and domain
+
+The equation is x³ + y³ + z³ = k, where x, y, z, k ∈ ℤ. Negative integers and zero are allowed.
+
+A search instance is (k, B), where B is an integer with B ≥ 0. Its domain is D(B) = {(x, y, z) : max(|x|, |y|, |z|) ≤ B}. The domain contains |D(B)| = (2B + 1)³ ordered triples and C(2B + 3, 3) canonical triples.
+
+## 2. Solutions and symmetry
+
+A valid solution has integer coordinates that are neither bool nor float and satisfies x³ + y³ + z³ == k exactly. Canonical form sorts the coordinates in ascending order: x ≤ y ≤ z. A permutation orbit has size 6 when all coordinates differ, 3 when exactly two agree, and 1 when all three agree.
+
+Negation maps a canonical triple (x, y, z) to (-z, -y, -x). The first triple solves k if and only if its negation solves -k; the map preserves canonical order.
+
+A trivial solution has some pair of coordinates that sums to zero. Its remaining coordinate is a cube root of k, so k is a perfect cube. Trivial solutions are included in results; triviality is a separate predicate.
+
+## 3. Solver contract
+
+`search(k, B)` returns exactly the set of canonical solutions in D(B), represented as a lexicographically sorted list. All future solvers must match the brute-force baseline exactly.
+
+## 4. Mathematical facts and test oracles
+
+For every integer n, n³ mod 9 ∈ {0, 1, 8}. If 3 divides n, then 27 divides n³. Otherwise n = 3m ± 1 and n³ ≡ ±1 (mod 9). A sum of three residues from {0, 1, -1} cannot equal 4 or 5 modulo 9, so k ≡ 4, 5 (mod 9) has no solutions. This fact is a test oracle; pruning belongs to Stage 4.
+
+The solutions for k = 0 are exactly (-t, 0, t) for 0 ≤ t ≤ B (Euler's proof of Fermat's Last Theorem for exponent 3).
+
+Two infinite families are:
+- k = 1: (9t⁴, 3t − 9t⁴, 1 − 9t³).
+- k = 2: (1 + 6t³, 1 − 6t³, −6t²).
+
+## 5. Arithmetic limits
+
+Signed int64 brute force is safe only for B ≤ 1,454,083, the largest bound satisfying 3B³ ≤ 2⁶³ − 1. Known record solutions exceed 128-bit range when their coordinates are cubed. Use exact integer arithmetic throughout.
+
+## 6. Known solutions
+
+The coordinates below retain their recorded order. They are not necessarily canonical.
+
+| k | x | y | z | note |
+| ---: | ---: | ---: | ---: | --- |
+| 1 | 9 | 10 | -12 | |
+| 2 | 0 | 1 | 1 | |
+| 2 | 7 | -5 | -6 | |
+| 3 | 1 | 1 | 1 | |
+| 3 | 4 | 4 | -5 | |
+| 3 | 569936821221962380720 | -569936821113563493509 | -472715493453327032 | Booker–Sutherland 2019 |
+| 29 | 3 | 1 | 1 | |
+| 30 | -283059965 | -2218888517 | 2220422932 | |
+| 33 | 8866128975287528 | -8778405442862239 | -2736111468807040 | Booker 2019 |
+| 42 | -80538738812075974 | 80435758145817515 | 12602123297335631 | Booker–Sutherland 2019 |
+| 52 | 60702901317 | 23961292454 | -61922712865 | |
+| 74 | -284650292555885 | 66229832190556 | 283450105697727 | Huisman 2016 |
