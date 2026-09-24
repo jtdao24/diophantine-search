@@ -36,6 +36,19 @@ class SearchInstance:
         _bound(self.bound)
 
 
+@dataclass(frozen=True)
+class SearchResult:
+    """A search result; see spec §3.
+
+    triples_checked measures search-space size for comparing later pruning
+    strategies; it is not a timing measure.
+    """
+
+    instance: SearchInstance
+    solutions: tuple[Triple, ...]
+    triples_checked: int
+
+
 def sum_of_cubes(t: Triple) -> int:
     """Compute the exact cube sum; see spec §2."""
 
