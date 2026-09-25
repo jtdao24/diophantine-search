@@ -1,6 +1,7 @@
 """Core definitions for the sum of three cubes; see the three-cubes spec."""
 
 from dataclasses import dataclass
+from math import comb
 
 Triple = tuple[int, int, int]
 
@@ -107,3 +108,44 @@ def negate(t: Triple) -> Triple:
     _triple(t)
     x, y, z = t
     return -z, -y, -x
+
+
+def validate_result(result: SearchResult) -> None:
+    """Check result soundness without trusting its solver; see spec §3."""
+
+    if not isinstance(result, SearchResult):
+        raise TypeError("result must be a SearchResult")
+    if not isinstance(result.instance, SearchInstance):
+        raise TypeError("result.instance must be a SearchInstance")
+    if not isinstance(result.solutions, tuple):
+        raise TypeError("result.solutions must be a tuple")
+
+    maximum = comb(2 * result.instance.bound + 3, 3)
+    if (
+        not isinstance(result.triples_checked, int)
+        or isinstance(result.triples_checked, bool)
+        or not 0 <= result.triples_checked <= maximum
+    ):
+        raise ValueError(
+            f"triples_checked must be an int in [0, {maximum}]"
+        )
+
+    previous: Triple | None = None
+    for triple in result.solutions:
+        try:
+            _triple(triple)
+        except (TypeError, ValueError) as error:
+            raise ValueError(f"invalid solution {triple!r}: {error}") from error
+
+        normalized = tuple(triple)
+        if not is_canonical(normalized):
+            raise ValueError(f"solution {triple!r} is not canonical")
+        if not in_domain(normalized, result.instance.bound):
+            raise ValueError(f"solution {triple!r} is outside the domain")
+        if not is_solution(result.instance.k, normalized):
+            raise ValueError(f"solution {triple!r} has the wrong cube sum")
+        if previous is not None and normalized <= previous:
+            raise ValueError(
+                f"solution {triple!r} is not strictly increasing"
+            )
+        previous = normalized

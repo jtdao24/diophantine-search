@@ -18,3 +18,5 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+markers = ["slow: long-running conformance and golden checks"]
+addopts = "-m 'not slow'"
