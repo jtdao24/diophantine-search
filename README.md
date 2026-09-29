@@ -14,6 +14,9 @@ backed by a mathematical argument and a reproducible benchmark.
 - Exact definitions: solution checking, sorted (canonical) form, trivial
   solutions, and negation symmetry.
 - A brute-force reference search over the box `max(|x|, |y|, |z|) ≤ B`.
+- A modular-pruning solver that skips triples ruled out by cube residues
+  (default modulus 819 = 7·9·13). On the default test range it checks about
+  0.14% of the brute-force triples and returns exactly the same solutions.
 - A conformance suite that any solver must pass, backed by independently
   generated golden data and mutant solvers that prove the checks catch bugs.
 - A command-line tool.
@@ -45,11 +48,29 @@ coordinates cancel (only possible when k is a perfect cube) are marked
 `trivial`. The last line summarizes the search, including how many candidate
 triples were checked.
 
+The brute-force search is the default. Choose the modular solver with
+`--solver modular`, and optionally a modulus from 1 to 100,000:
+
+```text
+$ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular
+-5 4 4
+1 1 1
+# k=3 bound=5 solutions=2 triples_checked=2
+
+$ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular --modulus 63
+-5 4 4
+1 1 1
+# k=3 bound=5 solutions=2 triples_checked=10
+```
+
+The pruning rules and their proofs are in section 8 of the
+[spec](docs/three-cubes-spec.md).
+
 ## Tests
 
 ```text
-python -m pytest              # default suite, about 1 second
-python -m pytest -m slow      # slow tier only (larger golden sets)
+python -m pytest              # default suite, a few seconds
+python -m pytest -m slow      # slow tier only (larger golden sets), under a minute
 python -m pytest -m ""        # everything
 ```
 
@@ -77,6 +98,7 @@ docs/three-cubes-spec.md                    correctness contract
 src/diophantine_search/families/
     three_cubes.py                          definitions, result types, validation
     three_cubes_brute_force.py              reference search
+    three_cubes_modular.py                  modular-pruning solver
 src/diophantine_search/testing/
     three_cubes_golden.py                   golden data generator and loader
     three_cubes_conformance.py              reusable solver checks

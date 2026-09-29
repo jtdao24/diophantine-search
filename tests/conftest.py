@@ -1,5 +1,6 @@
 """Shared solver and data fixtures for conformance tests."""
 
+from functools import partial
 import json
 from pathlib import Path
 
@@ -8,9 +9,15 @@ import pytest
 from diophantine_search.families.three_cubes_brute_force import (
     brute_force_search,
 )
+from diophantine_search.families.three_cubes_modular import modular_search
 from diophantine_search.testing.three_cubes_golden import load_golden
 
-SOLVERS = {"brute_force": brute_force_search}
+SOLVERS = {
+    "brute_force": brute_force_search,
+    "modular": modular_search,
+    "modular_m63": partial(modular_search, modulus=63),
+    "modular_m9": partial(modular_search, modulus=9),
+}
 DATA = Path(__file__).parent / "data"
 
 
