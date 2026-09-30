@@ -9,6 +9,7 @@ import pytest
 from diophantine_search.families.three_cubes_brute_force import (
     brute_force_search,
 )
+from diophantine_search.families.three_cubes_cube_root import cube_root_search
 from diophantine_search.families.three_cubes_modular import modular_search
 from diophantine_search.testing.three_cubes_golden import load_golden
 
@@ -17,6 +18,9 @@ SOLVERS = {
     "modular": modular_search,
     "modular_m63": partial(modular_search, modulus=63),
     "modular_m9": partial(modular_search, modulus=9),
+    "cube_root": cube_root_search,
+    "cube_root_m1": partial(cube_root_search, modulus=1),
+    "cube_root_m63": partial(cube_root_search, modulus=63),
 }
 DATA = Path(__file__).parent / "data"
 

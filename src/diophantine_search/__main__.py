@@ -4,6 +4,10 @@ import argparse
 
 from diophantine_search.families.three_cubes import SearchInstance, is_trivial
 from diophantine_search.families.three_cubes_brute_force import brute_force_search
+from diophantine_search.families.three_cubes_cube_root import (
+    cube_root_search,
+    y_class_table,
+)
 from diophantine_search.families.three_cubes_modular import (
     DEFAULT_MODULUS,
     MAX_MODULUS,
@@ -21,7 +25,7 @@ def main(argv: list[str] | None = None) -> int:
     three_cubes.add_argument("--bound", type=int, required=True)
     three_cubes.add_argument(
         "--solver",
-        choices=("brute-force", "modular"),
+        choices=("brute-force", "modular", "cube-root"),
         default="brute-force",
     )
     three_cubes.add_argument("--modulus", type=int, default=None)
@@ -33,13 +37,20 @@ def main(argv: list[str] | None = None) -> int:
     instance = SearchInstance(args.k, args.bound)
     if args.solver == "brute-force":
         if args.modulus is not None:
-            parser.error("--modulus requires --solver modular")
+            parser.error("--modulus requires --solver modular or cube-root")
         result = brute_force_search(instance)
-    else:
+    elif args.solver == "modular":
         modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
         if not 1 <= modulus <= MAX_MODULUS:
             parser.error(f"--modulus must be in [1, {MAX_MODULUS}]")
         result = modular_search(instance, modulus)
+    else:
+        modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
+        try:
+            y_class_table(modulus)
+        except (TypeError, ValueError) as error:
+            parser.error(str(error))
+        result = cube_root_search(instance, modulus)
     for triple in result.solutions:
         suffix = " trivial" if is_trivial(triple) else ""
         print(*triple, end=f"{suffix}\n")

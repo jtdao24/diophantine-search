@@ -17,6 +17,10 @@ backed by a mathematical argument and a reproducible benchmark.
 - A modular-pruning solver that skips triples ruled out by cube residues
   (default modulus 819 = 7·9·13). On the default test range it checks about
   0.14% of the brute-force triples and returns exactly the same solutions.
+- A cube-root row solver: for each (x, y) pair within proven bounds, it
+  computes the only possible z with an exact integer cube root, and uses cube
+  residues to skip pairs that cannot work. This takes the search from order
+  B³ candidate triples to order B² candidate rows.
 - A conformance suite that any solver must pass, backed by independently
   generated golden data and mutant solvers that prove the checks catch bugs.
 - A command-line tool.
@@ -48,8 +52,14 @@ coordinates cancel (only possible when k is a perfect cube) are marked
 `trivial`. The last line summarizes the search, including how many candidate
 triples were checked.
 
-The brute-force search is the default. Choose the modular solver with
-`--solver modular`, and optionally a modulus from 1 to 100,000:
+Choose a solver with `--solver`. All solvers return exactly the same
+solutions:
+
+| Solver | What it does | `--modulus` |
+|---|---|---|
+| `brute-force` (default) | Checks every sorted triple in the box | not allowed |
+| `modular` | Skips triples ruled out by cube residues | 1 to 100,000, default 819 |
+| `cube-root` | Solves for z in each surviving (x, y) row | 1 to 100,000, default 819 |
 
 ```text
 $ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular
@@ -57,14 +67,21 @@ $ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular
 1 1 1
 # k=3 bound=5 solutions=2 triples_checked=2
 
-$ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular --modulus 63
--5 4 4
-1 1 1
-# k=3 bound=5 solutions=2 triples_checked=10
+$ python -m diophantine_search three-cubes --k 29 --bound 1000 --solver cube-root
+-233 -69 235
+-20 13 18
+-3 -2 4
+1 1 3
+# k=29 bound=1000 solutions=4 triples_checked=58493
 ```
 
-The pruning rules and their proofs are in section 8 of the
-[spec](docs/three-cubes-spec.md).
+For the cube-root solver, `triples_checked` counts candidate (x, y) rows, each
+tested with one exact cube root. Compare solvers by time, not by this count.
+
+Some moduli make the cube-root solver build a large lookup table the first
+time they are used; the table size is capped, and moduli that would exceed the
+cap are rejected. The pruning rules and their proofs are in sections 8 and 9 of
+the [spec](docs/three-cubes-spec.md).
 
 ## Tests
 
@@ -99,6 +116,8 @@ src/diophantine_search/families/
     three_cubes.py                          definitions, result types, validation
     three_cubes_brute_force.py              reference search
     three_cubes_modular.py                  modular-pruning solver
+    three_cubes_cube_root.py                cube-root row solver
+src/diophantine_search/intmath.py           exact integer cube roots
 src/diophantine_search/testing/
     three_cubes_golden.py                   golden data generator and loader
     three_cubes_conformance.py              reusable solver checks

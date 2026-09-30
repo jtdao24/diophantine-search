@@ -78,3 +78,23 @@ Over k ∈ [−100, 100] at B = 30, the exact reproducible totals are 6,234,627 
 The default m = 819 = 7·9·13 is the product of 9 and the two smallest primes p ≡ 1 (mod 3), 7 and 13, giving three pairwise-coprime non-surjective cube-residue constraints. Larger moduli such as 819·19 check fewer triples but were slower in Python at feasible bounds because of per-class loop overhead. Powers of 2 such as 4 and 8 provide further non-surjective constraints. The default may be retuned after benchmarking.
 
 Implementation note: in C and C++, the `%` operator can return negative values for negative operands; residues must be normalized into [0, m).
+
+## 9. Cube-root row search
+
+Uniqueness. The map n ↦ n³ is strictly increasing on ℤ, so each (x, y) has at most one integer z satisfying z³ = k − x³ − y³. The solver finds it with an exact integer cube root using integer Newton iteration and no floating point, valid for integers of any size.
+
+Bounds lemma. For a canonical solution x ≤ y ≤ z ≤ B, 2y³ ≤ y³ + z³ = k − x³ and k − x³ − y³ = z³ ≤ B³. Also 3x³ ≤ k, which follows from the first inequality and x ≤ y. Hence
+
+max(x, ⌈∛(k − x³ − B³)⌉) ≤ y ≤ min(B, ⌊∛⌊(k − x³)/2⌋⌋)
+
+and x ≤ min(B, ⌊∛⌊k/3⌋⌋). Floor division is valid because y³ and x³ are integers. Conversely, if the exact root exists within these bounds, then y ≤ z ≤ B.
+
+Modular row filter. By §8, a row (x, y) can contain a solution only if (k − x³ − y³) mod m is a cube residue. Equivalently, y mod m lies in Y_m(s) = {c : (s − c³) mod m is a cube residue}, where s = (k − x³) mod m. The solver iterates y only over these classes. The table has m·|cube residues| entries and is capped at 5,000,000.
+
+Each surviving (x, y) row increments `triples_checked` once and performs one exact integer cube-root test, which decides whether the row's only possible z, the real cube root of k − x³ − y³, is an integer. For this solver, `triples_checked` counts candidate rows rather than explicit triples. It still satisfies the §3 bound because the number of canonical rows is at most C(2B + 2, 2) ≤ C(2B + 3, 3). If m divides m′, the count with m′ is at most the count with m.
+
+Over k ∈ [−100, 100] at B = 30, the exact reproducible totals are 121,664 candidate rows (1.52% of brute-force triples) for m = 1, 52,796 (0.661%) for m = 9, 23,188 (0.291%) for m = 63, and 9,109 (0.114%) for m = 819. Counts measure candidates rather than cost: one cube-root test costs more than one triple check. Timing belongs to benchmarking.
+
+The default is m = 819. In informal timing, m = 15561 was faster at B = 3000; the default may be retuned after benchmarking.
+
+Implementation note: C and C++ integer division truncates toward zero. The bounds require floor division, so negative operands must be handled explicitly.
