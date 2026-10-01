@@ -1,0 +1,2580 @@
+{
+  "schema_version": "1",
+  "suite": "standard",
+  "repeats": 5,
+  "environment": {
+    "python_version": "3.12.10",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "git_commit": "478fea2d85dd9a23488f48fa7fc9bae71f32dfa0",
+    "git_dirty": false,
+    "timestamp_utc": "2026-10-01T01:55:39.259420+00:00",
+    "timer": "perf_counter_ns",
+    "gc": "disabled during timed calls"
+  },
+  "results": [
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 3,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32535700,
+        32325100,
+        32233700,
+        32462000,
+        32563500
+      ],
+      "min_ns": 32233700,
+      "median_ns": 32462000,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 3,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        35421300,
+        32243600,
+        31993900,
+        32344700,
+        32956600
+      ],
+      "min_ns": 31993900,
+      "median_ns": 32344700,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 3,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        269056400,
+        267675700,
+        270371400,
+        269375300,
+        267489800
+      ],
+      "min_ns": 267489800,
+      "median_ns": 269056400,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 3,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        268508300,
+        270256000,
+        269570400,
+        270603900,
+        269259600
+      ],
+      "min_ns": 268508300,
+      "median_ns": 269570400,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 29,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32653100,
+        32331400,
+        32328100,
+        32291300,
+        33036100
+      ],
+      "min_ns": 32291300,
+      "median_ns": 32331400,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 29,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32323100,
+        32047800,
+        32374400,
+        32264900,
+        32211000
+      ],
+      "min_ns": 32047800,
+      "median_ns": 32264900,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 29,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        266973200,
+        267948000,
+        269754500,
+        266695100,
+        266839500
+      ],
+      "min_ns": 266695100,
+      "median_ns": 266973200,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 29,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        266219200,
+        267047600,
+        266879700,
+        267226900,
+        266887600
+      ],
+      "min_ns": 266219200,
+      "median_ns": 266887600,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 30,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32431000,
+        32490300,
+        32556300,
+        32677200,
+        32310300
+      ],
+      "min_ns": 32310300,
+      "median_ns": 32490300,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 30,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32426100,
+        32434000,
+        32972900,
+        32505300,
+        33874600
+      ],
+      "min_ns": 32426100,
+      "median_ns": 32505300,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 30,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        268981000,
+        266258700,
+        264917200,
+        266152500,
+        266828800
+      ],
+      "min_ns": 264917200,
+      "median_ns": 266258700,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 30,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        266802600,
+        269772500,
+        264517700,
+        268195700,
+        267482800
+      ],
+      "min_ns": 264517700,
+      "median_ns": 267482800,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 33,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32770600,
+        32670500,
+        34761800,
+        33001500,
+        32724100
+      ],
+      "min_ns": 32670500,
+      "median_ns": 32770600,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 33,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32497400,
+        32520500,
+        32839100,
+        32704000,
+        32701600
+      ],
+      "min_ns": 32497400,
+      "median_ns": 32701600,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 33,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        267057100,
+        269573500,
+        267344500,
+        267549000,
+        268428600
+      ],
+      "min_ns": 267057100,
+      "median_ns": 267549000,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 33,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        266008900,
+        267109700,
+        268020900,
+        267921100,
+        266742700
+      ],
+      "min_ns": 266008900,
+      "median_ns": 267109700,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 42,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32707300,
+        32839900,
+        32676900,
+        32893400,
+        32344700
+      ],
+      "min_ns": 32344700,
+      "median_ns": 32707300,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 42,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32803200,
+        32215700,
+        32456800,
+        32727100,
+        32607000
+      ],
+      "min_ns": 32215700,
+      "median_ns": 32607000,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 42,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        266100800,
+        265447000,
+        268330300,
+        265483400,
+        265228700
+      ],
+      "min_ns": 265228700,
+      "median_ns": 265483400,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 42,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        271122600,
+        264819600,
+        265785900,
+        264763600,
+        267046100
+      ],
+      "min_ns": 264763600,
+      "median_ns": 265785900,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 52,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32354500,
+        32371800,
+        32230600,
+        32490800,
+        32099800
+      ],
+      "min_ns": 32099800,
+      "median_ns": 32354500,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 52,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32225500,
+        33240500,
+        33120100,
+        32828600,
+        33505900
+      ],
+      "min_ns": 32225500,
+      "median_ns": 33120100,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 52,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        265529800,
+        267699500,
+        267722500,
+        267531400,
+        267475900
+      ],
+      "min_ns": 265529800,
+      "median_ns": 267531400,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 52,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        267111400,
+        265783500,
+        266381700,
+        266608700,
+        264770900
+      ],
+      "min_ns": 264770900,
+      "median_ns": 266381700,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 74,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32989200,
+        32305100,
+        32989200,
+        32360600,
+        32829100
+      ],
+      "min_ns": 32305100,
+      "median_ns": 32829100,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 74,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32885300,
+        32520000,
+        32521800,
+        32329400,
+        32316700
+      ],
+      "min_ns": 32316700,
+      "median_ns": 32520000,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 74,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        274774500,
+        270257700,
+        267650400,
+        268761700,
+        267975700
+      ],
+      "min_ns": 267650400,
+      "median_ns": 268761700,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 74,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        270209200,
+        270291100,
+        269533700,
+        267900300,
+        271154000
+      ],
+      "min_ns": 267900300,
+      "median_ns": 270209200,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 114,
+      "bound": 100,
+      "mode": "cold",
+      "times_ns": [
+        32521500,
+        32951700,
+        32904100,
+        32999200,
+        32744700
+      ],
+      "min_ns": 32521500,
+      "median_ns": 32904100,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 114,
+      "bound": 100,
+      "mode": "warm",
+      "times_ns": [
+        32568700,
+        32222600,
+        32625600,
+        32073400,
+        32394500
+      ],
+      "min_ns": 32073400,
+      "median_ns": 32394500,
+      "triples_checked": 1373701,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 114,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        271498900,
+        270463500,
+        270790400,
+        268985500,
+        269866500
+      ],
+      "min_ns": 268985500,
+      "median_ns": 270463500,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "brute-force",
+      "modulus": null,
+      "k": 114,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        275992500,
+        270006400,
+        271952600,
+        267866300,
+        267652100
+      ],
+      "min_ns": 267652100,
+      "median_ns": 270006400,
+      "triples_checked": 10827401,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        11157900,
+        11158500,
+        11534600,
+        11474700,
+        11391000
+      ],
+      "min_ns": 11157900,
+      "median_ns": 11391000,
+      "triples_checked": 2093,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        11089800,
+        11359700,
+        11379700,
+        11213200,
+        11142800
+      ],
+      "min_ns": 11089800,
+      "median_ns": 11213200,
+      "triples_checked": 2093,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        45226500,
+        45288500,
+        45942500,
+        45878500,
+        45650700
+      ],
+      "min_ns": 45226500,
+      "median_ns": 45650700,
+      "triples_checked": 16155,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        45666200,
+        45996500,
+        48037100,
+        46027900,
+        45670700
+      ],
+      "min_ns": 45666200,
+      "median_ns": 45996500,
+      "triples_checked": 16155,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        187637400,
+        191255800,
+        193046800,
+        196087600,
+        191186800
+      ],
+      "min_ns": 187637400,
+      "median_ns": 191255800,
+      "triples_checked": 125999,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        187165300,
+        186177000,
+        186301200,
+        185337000,
+        186293900
+      ],
+      "min_ns": 185337000,
+      "median_ns": 186293900,
+      "triples_checked": 125999,
+      "count_unit": "triples",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        19604400,
+        19281200,
+        19024900,
+        18972900,
+        19585000
+      ],
+      "min_ns": 18972900,
+      "median_ns": 19281200,
+      "triples_checked": 19341,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        18875300,
+        19125500,
+        19669700,
+        19125600,
+        18789800
+      ],
+      "min_ns": 18789800,
+      "median_ns": 19125500,
+      "triples_checked": 19341,
+      "count_unit": "triples",
+      "solutions_count": 3,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        84349100,
+        82235800,
+        84152300,
+        82975800,
+        83612700
+      ],
+      "min_ns": 82235800,
+      "median_ns": 83612700,
+      "triples_checked": 155185,
+      "count_unit": "triples",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        82706900,
+        84327800,
+        84074900,
+        83770400,
+        84403500
+      ],
+      "min_ns": 82706900,
+      "median_ns": 84074900,
+      "triples_checked": 155185,
+      "count_unit": "triples",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        363817500,
+        366634400,
+        362996400,
+        361708000,
+        365052900
+      ],
+      "min_ns": 361708000,
+      "median_ns": 363817500,
+      "triples_checked": 1228509,
+      "count_unit": "triples",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        366419400,
+        371289300,
+        381579200,
+        369298200,
+        367548600
+      ],
+      "min_ns": 366419400,
+      "median_ns": 369298200,
+      "triples_checked": 1228509,
+      "count_unit": "triples",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        11308400,
+        11301300,
+        11287100,
+        11438100,
+        11334100
+      ],
+      "min_ns": 11287100,
+      "median_ns": 11308400,
+      "triples_checked": 1978,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        11122600,
+        11226100,
+        11181100,
+        11231700,
+        11158400
+      ],
+      "min_ns": 11122600,
+      "median_ns": 11181100,
+      "triples_checked": 1978,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        45681900,
+        46091900,
+        46237600,
+        45859700,
+        46742400
+      ],
+      "min_ns": 45681900,
+      "median_ns": 46091900,
+      "triples_checked": 15507,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        45831600,
+        46042800,
+        46458800,
+        45777300,
+        45637800
+      ],
+      "min_ns": 45637800,
+      "median_ns": 45831600,
+      "triples_checked": 15507,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        187649100,
+        187196600,
+        188081500,
+        185167900,
+        189268300
+      ],
+      "min_ns": 185167900,
+      "median_ns": 187649100,
+      "triples_checked": 125592,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        188693600,
+        188109500,
+        189433700,
+        187430100,
+        186542000
+      ],
+      "min_ns": 186542000,
+      "median_ns": 188109500,
+      "triples_checked": 125592,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        11240100,
+        11196600,
+        11200000,
+        11434800,
+        11238700
+      ],
+      "min_ns": 11196600,
+      "median_ns": 11238700,
+      "triples_checked": 1857,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        11111900,
+        11348000,
+        11576100,
+        11276600,
+        11079500
+      ],
+      "min_ns": 11079500,
+      "median_ns": 11276600,
+      "triples_checked": 1857,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        46341000,
+        46435600,
+        45819900,
+        46104900,
+        46920200
+      ],
+      "min_ns": 45819900,
+      "median_ns": 46341000,
+      "triples_checked": 15336,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        45797500,
+        47267200,
+        47504700,
+        46318800,
+        46233100
+      ],
+      "min_ns": 45797500,
+      "median_ns": 46318800,
+      "triples_checked": 15336,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        186199300,
+        188328500,
+        189891500,
+        187668200,
+        187471300
+      ],
+      "min_ns": 186199300,
+      "median_ns": 187668200,
+      "triples_checked": 123408,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        189223200,
+        192775300,
+        196884400,
+        188799100,
+        192471500
+      ],
+      "min_ns": 188799100,
+      "median_ns": 192471500,
+      "triples_checked": 123408,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        12551800,
+        12272700,
+        12396100,
+        12891300,
+        12463700
+      ],
+      "min_ns": 12272700,
+      "median_ns": 12463700,
+      "triples_checked": 3946,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        11991300,
+        12103200,
+        12279100,
+        12121000,
+        12244600
+      ],
+      "min_ns": 11991300,
+      "median_ns": 12121000,
+      "triples_checked": 3946,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        51292100,
+        51655200,
+        50955200,
+        52185000,
+        50997100
+      ],
+      "min_ns": 50955200,
+      "median_ns": 51292100,
+      "triples_checked": 30594,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        50555300,
+        50531200,
+        51467800,
+        49924600,
+        50571800
+      ],
+      "min_ns": 49924600,
+      "median_ns": 50555300,
+      "triples_checked": 30594,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        211542100,
+        212366700,
+        207893900,
+        212224100,
+        214405800
+      ],
+      "min_ns": 207893900,
+      "median_ns": 212224100,
+      "triples_checked": 250903,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        210559700,
+        209155900,
+        207391100,
+        207463900,
+        209878700
+      ],
+      "min_ns": 207391100,
+      "median_ns": 209155900,
+      "triples_checked": 250903,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        12243300,
+        12322900,
+        12202700,
+        12184700,
+        12643500
+      ],
+      "min_ns": 12184700,
+      "median_ns": 12243300,
+      "triples_checked": 4064,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        12064600,
+        12233900,
+        12457900,
+        12534500,
+        12192800
+      ],
+      "min_ns": 12064600,
+      "median_ns": 12233900,
+      "triples_checked": 4064,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        52112200,
+        51845600,
+        52241200,
+        52267700,
+        52286200
+      ],
+      "min_ns": 51845600,
+      "median_ns": 52241200,
+      "triples_checked": 37611,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        52265000,
+        52333700,
+        52394900,
+        52309500,
+        52005800
+      ],
+      "min_ns": 52005800,
+      "median_ns": 52309500,
+      "triples_checked": 37611,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        213519700,
+        213803900,
+        215944800,
+        214551200,
+        214321300
+      ],
+      "min_ns": 213519700,
+      "median_ns": 214321300,
+      "triples_checked": 293088,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        213223600,
+        215640700,
+        215879500,
+        216507900,
+        215192200
+      ],
+      "min_ns": 213223600,
+      "median_ns": 215640700,
+      "triples_checked": 293088,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        13060100,
+        13129700,
+        13094100,
+        13274100,
+        13138900
+      ],
+      "min_ns": 13060100,
+      "median_ns": 13129700,
+      "triples_checked": 5785,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        12850200,
+        13139500,
+        12784000,
+        12838100,
+        14564200
+      ],
+      "min_ns": 12784000,
+      "median_ns": 12850200,
+      "triples_checked": 5785,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        54042600,
+        53946600,
+        53213300,
+        56131700,
+        55198100
+      ],
+      "min_ns": 53213300,
+      "median_ns": 54042600,
+      "triples_checked": 46791,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        53591100,
+        54352000,
+        55951000,
+        53865600,
+        53826300
+      ],
+      "min_ns": 53591100,
+      "median_ns": 53865600,
+      "triples_checked": 46791,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        226106400,
+        226181900,
+        228309500,
+        225063700,
+        227428300
+      ],
+      "min_ns": 225063700,
+      "median_ns": 226181900,
+      "triples_checked": 366530,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        225753300,
+        227969000,
+        227021300,
+        228020700,
+        223835400
+      ],
+      "min_ns": 223835400,
+      "median_ns": 227021300,
+      "triples_checked": 366530,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 200,
+      "mode": "cold",
+      "times_ns": [
+        11402100,
+        11350400,
+        11339800,
+        11141900,
+        11397800
+      ],
+      "min_ns": 11141900,
+      "median_ns": 11350400,
+      "triples_checked": 2048,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 200,
+      "mode": "warm",
+      "times_ns": [
+        11064300,
+        11138600,
+        11167600,
+        11023900,
+        11299900
+      ],
+      "min_ns": 11023900,
+      "median_ns": 11138600,
+      "triples_checked": 2048,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "brute-force"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 400,
+      "mode": "cold",
+      "times_ns": [
+        44881300,
+        45728400,
+        47504400,
+        45535200,
+        45693500
+      ],
+      "min_ns": 44881300,
+      "median_ns": 45693500,
+      "triples_checked": 15771,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 400,
+      "mode": "warm",
+      "times_ns": [
+        45293000,
+        45993600,
+        46012400,
+        45750100,
+        45418000
+      ],
+      "min_ns": 45293000,
+      "median_ns": 45750100,
+      "triples_checked": 15771,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 800,
+      "mode": "cold",
+      "times_ns": [
+        186316700,
+        184026900,
+        185641100,
+        190297700,
+        186130700
+      ],
+      "min_ns": 184026900,
+      "median_ns": 186130700,
+      "triples_checked": 122990,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "modular[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 800,
+      "mode": "warm",
+      "times_ns": [
+        192518000,
+        187985600,
+        188825800,
+        187575400,
+        186826300
+      ],
+      "min_ns": 186826300,
+      "median_ns": 187985600,
+      "triples_checked": 122990,
+      "count_unit": "triples",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        6509800,
+        6366600,
+        6146700,
+        6586600,
+        6284400
+      ],
+      "min_ns": 6146700,
+      "median_ns": 6366600,
+      "triples_checked": 5186,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        4355500,
+        4275900,
+        4361400,
+        4264000,
+        4255800
+      ],
+      "min_ns": 4255800,
+      "median_ns": 4275900,
+      "triples_checked": 5186,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        35335000,
+        35810300,
+        35338400,
+        35648400,
+        35589600
+      ],
+      "min_ns": 35335000,
+      "median_ns": 35589600,
+      "triples_checked": 46742,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        33413600,
+        32959600,
+        33389500,
+        33192700,
+        33405800
+      ],
+      "min_ns": 32959600,
+      "median_ns": 33389500,
+      "triples_checked": 46742,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        328398700,
+        331954900,
+        330126000,
+        330653600,
+        333353900
+      ],
+      "min_ns": 328398700,
+      "median_ns": 330653600,
+      "triples_checked": 516781,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        325738200,
+        327472500,
+        329654600,
+        328764000,
+        326643200
+      ],
+      "min_ns": 325738200,
+      "median_ns": 327472500,
+      "triples_checked": 516781,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        35400700,
+        35861100,
+        35894000,
+        35632500,
+        36007100
+      ],
+      "min_ns": 35400700,
+      "median_ns": 35861100,
+      "triples_checked": 58493,
+      "count_unit": "rows",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        33918200,
+        33544700,
+        33243400,
+        33955300,
+        33673700
+      ],
+      "min_ns": 33243400,
+      "median_ns": 33673700,
+      "triples_checked": 58493,
+      "count_unit": "rows",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        329572500,
+        325900400,
+        325734600,
+        326644100,
+        325589600
+      ],
+      "min_ns": 325589600,
+      "median_ns": 325900400,
+      "triples_checked": 527341,
+      "count_unit": "rows",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        324897200,
+        323437500,
+        323879200,
+        322784400,
+        325276300
+      ],
+      "min_ns": 322784400,
+      "median_ns": 323879200,
+      "triples_checked": 527341,
+      "count_unit": "rows",
+      "solutions_count": 4,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        3534340500,
+        3568423600,
+        3574024600,
+        3573402200,
+        3559515700
+      ],
+      "min_ns": 3534340500,
+      "median_ns": 3568423600,
+      "triples_checked": 5853190,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        3506858800,
+        3516638900,
+        3521222000,
+        3526383200,
+        3512886600
+      ],
+      "min_ns": 3506858800,
+      "median_ns": 3516638900,
+      "triples_checked": 5853190,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        8657800,
+        8649800,
+        8665200,
+        8702200,
+        8625000
+      ],
+      "min_ns": 8625000,
+      "median_ns": 8657800,
+      "triples_checked": 9603,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        6765500,
+        6783100,
+        6744000,
+        6850200,
+        6774800
+      ],
+      "min_ns": 6744000,
+      "median_ns": 6774800,
+      "triples_checked": 9603,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        58485300,
+        59390800,
+        60763800,
+        59219600,
+        59204400
+      ],
+      "min_ns": 58485300,
+      "median_ns": 59219600,
+      "triples_checked": 86661,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        59568800,
+        57332300,
+        56881900,
+        57247400,
+        57435300
+      ],
+      "min_ns": 56881900,
+      "median_ns": 57332300,
+      "triples_checked": 86661,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        614778400,
+        594502600,
+        596098700,
+        599178100,
+        600029700
+      ],
+      "min_ns": 594502600,
+      "median_ns": 599178100,
+      "triples_checked": 962305,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 30,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        599081900,
+        591693300,
+        594582600,
+        594973100,
+        591008800
+      ],
+      "min_ns": 591008800,
+      "median_ns": 594582600,
+      "triples_checked": 962305,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        8605400,
+        8494300,
+        8778500,
+        8871900,
+        8425000
+      ],
+      "min_ns": 8425000,
+      "median_ns": 8605400,
+      "triples_checked": 9663,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        6627300,
+        7236000,
+        6624500,
+        6791800,
+        6566600
+      ],
+      "min_ns": 6566600,
+      "median_ns": 6627300,
+      "triples_checked": 9663,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        59502200,
+        59404500,
+        58948900,
+        58578400,
+        59058900
+      ],
+      "min_ns": 58578400,
+      "median_ns": 59058900,
+      "triples_checked": 86518,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        56330300,
+        56935300,
+        56674500,
+        56973200,
+        57473600
+      ],
+      "min_ns": 56330300,
+      "median_ns": 56935300,
+      "triples_checked": 86518,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        595296000,
+        595986000,
+        597626300,
+        595859000,
+        597291200
+      ],
+      "min_ns": 595296000,
+      "median_ns": 595986000,
+      "triples_checked": 962778,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        591989100,
+        592736800,
+        596012700,
+        594412000,
+        594678800
+      ],
+      "min_ns": 591989100,
+      "median_ns": 594412000,
+      "triples_checked": 962778,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        13087100,
+        12989300,
+        13239000,
+        13341100,
+        13125600
+      ],
+      "min_ns": 12989300,
+      "median_ns": 13125600,
+      "triples_checked": 17819,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        11296900,
+        11531500,
+        11353400,
+        11399500,
+        11128000
+      ],
+      "min_ns": 11128000,
+      "median_ns": 11353400,
+      "triples_checked": 17819,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        103594100,
+        104612100,
+        104040500,
+        104938200,
+        105005200
+      ],
+      "min_ns": 103594100,
+      "median_ns": 104612100,
+      "triples_checked": 160094,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        102902900,
+        101457300,
+        101998400,
+        100786900,
+        101263100
+      ],
+      "min_ns": 100786900,
+      "median_ns": 101457300,
+      "triples_checked": 160094,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        1088335400,
+        1091414900,
+        1097803900,
+        1086822300,
+        1087291600
+      ],
+      "min_ns": 1086822300,
+      "median_ns": 1088335400,
+      "triples_checked": 1778964,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1085320900,
+        1085188600,
+        1090054300,
+        1087777500,
+        1083062600
+      ],
+      "min_ns": 1083062600,
+      "median_ns": 1085320900,
+      "triples_checked": 1778964,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        13738200,
+        13649000,
+        13600400,
+        13411500,
+        13448200
+      ],
+      "min_ns": 13411500,
+      "median_ns": 13600400,
+      "triples_checked": 18438,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        11676600,
+        11563700,
+        11779200,
+        11619800,
+        11809300
+      ],
+      "min_ns": 11563700,
+      "median_ns": 11676600,
+      "triples_checked": 18438,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        108521100,
+        107325800,
+        107207700,
+        109960800,
+        107496300
+      ],
+      "min_ns": 107207700,
+      "median_ns": 107496300,
+      "triples_checked": 166632,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        107254000,
+        105549400,
+        106012500,
+        105664700,
+        105461700
+      ],
+      "min_ns": 105461700,
+      "median_ns": 105664700,
+      "triples_checked": 166632,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        1134286400,
+        1145226300,
+        1149026700,
+        1136839500,
+        1142784100
+      ],
+      "min_ns": 1134286400,
+      "median_ns": 1142784100,
+      "triples_checked": 1851919,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 52,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1134285000,
+        1126583900,
+        1136093300,
+        1126230700,
+        1134500600
+      ],
+      "min_ns": 1126230700,
+      "median_ns": 1134285000,
+      "triples_checked": 1851919,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        13131800,
+        13073000,
+        13086700,
+        12669600,
+        13101800
+      ],
+      "min_ns": 12669600,
+      "median_ns": 13086700,
+      "triples_checked": 17354,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        11314500,
+        11121000,
+        10961900,
+        11448500,
+        11640800
+      ],
+      "min_ns": 10961900,
+      "median_ns": 11314500,
+      "triples_checked": 17354,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        102817600,
+        100719100,
+        101239800,
+        100587700,
+        101843100
+      ],
+      "min_ns": 100587700,
+      "median_ns": 101239800,
+      "triples_checked": 155916,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        98413000,
+        99461000,
+        98909600,
+        98628700,
+        99478000
+      ],
+      "min_ns": 98413000,
+      "median_ns": 98909600,
+      "triples_checked": 155916,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        1075598400,
+        1073975800,
+        1069933700,
+        1068101200,
+        1066691000
+      ],
+      "min_ns": 1066691000,
+      "median_ns": 1069933700,
+      "triples_checked": 1731478,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 74,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1064845000,
+        1061467200,
+        1060226900,
+        1061221200,
+        1060650600
+      ],
+      "min_ns": 1060226900,
+      "median_ns": 1061221200,
+      "triples_checked": 1731478,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 1000,
+      "mode": "cold",
+      "times_ns": [
+        8136600,
+        7972800,
+        8001900,
+        7992500,
+        8050700
+      ],
+      "min_ns": 7972800,
+      "median_ns": 8001900,
+      "triples_checked": 8650,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 1000,
+      "mode": "warm",
+      "times_ns": [
+        6154000,
+        6161000,
+        6286500,
+        6171000,
+        6320900
+      ],
+      "min_ns": 6154000,
+      "median_ns": 6171000,
+      "triples_checked": 8650,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 3000,
+      "mode": "cold",
+      "times_ns": [
+        54770200,
+        54848800,
+        54774100,
+        54735900,
+        54780800
+      ],
+      "min_ns": 54735900,
+      "median_ns": 54774100,
+      "triples_checked": 77713,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 3000,
+      "mode": "warm",
+      "times_ns": [
+        52544700,
+        53139700,
+        53387100,
+        52942900,
+        52252400
+      ],
+      "min_ns": 52252400,
+      "median_ns": 52942900,
+      "triples_checked": 77713,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        535054500,
+        536233300,
+        537795400,
+        532693800,
+        537596300
+      ],
+      "min_ns": 532693800,
+      "median_ns": 536233300,
+      "triples_checked": 860647,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "cube-root[m=819]",
+      "modulus": 819,
+      "k": 114,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        537779300,
+        534415400,
+        535297900,
+        531721400,
+        534835400
+      ],
+      "min_ns": 531721400,
+      "median_ns": 534835400,
+      "triples_checked": 860647,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    }
+  ]
+}

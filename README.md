@@ -127,6 +127,34 @@ suite definitions, and rules for recording results are in
 [docs/benchmarking.md](docs/benchmarking.md). Any performance claim in this
 project must cite a committed results file under `benchmarks/results/`.
 
+### Results
+
+Recorded at commit `478fea2` on one machine (CPython 3.12.10, Windows 11,
+20 CPUs). Times are medians of warm runs unless noted. They are only comparable
+with runs from the same environment.
+
+From [the standard suite](benchmarks/results/2026-09-30-standard-478fea2.json):
+
+- At B = 200, the modular solver is 14–24× faster than brute force (median
+  22.8× across the 8 targets).
+- Summed over the 8 targets, the cube-root solver searches B = 1000 in 92 ms,
+  while the modular solver needs 1,776 ms for the smaller B = 800.
+- At B = 10,000, the cube-root solver takes 0.33 s (k = 3) to 3.5 s (k = 29)
+  per target. The spread comes from how many rows survive the residue filter.
+
+From [the modulus sweep](benchmarks/results/2026-09-30-modulus-sweep-478fea2.json),
+summed over k = 3, 33, 42:
+
+| Solver | Situation | Best modulus | 819 compared with best |
+|---|---|---|---|
+| cube-root | cold, B ≤ 3000 | 819 | best |
+| cube-root | cold, B = 10,000 | 3276 | 1.34× slower |
+| cube-root | warm, B = 10,000 | 15561 | 2.59× slower |
+| modular | B = 200, 400 | 3276 or 6552 | 3–8% slower |
+
+The default modulus stays 819 for now; it will be re-measured once the hot loop
+moves to C++.
+
 ## Layout
 
 ```text
