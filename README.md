@@ -108,10 +108,30 @@ The golden data is generated, never hand-edited:
 python -m diophantine_search.testing.three_cubes_golden tests/data/three_cubes_golden.json
 ```
 
+## Benchmarks
+
+Performance numbers come from fixed benchmark suites, not one-off timings.
+Every case is checked against a reference before it is timed, and each case is
+timed both cold (lookup tables rebuilt every run) and warm (tables already
+built).
+
+```text
+python -m diophantine_search.bench run --suite quick
+python -m diophantine_search.bench run --suite standard --output benchmarks/results/<file>.json
+python -m diophantine_search.bench compare old.json new.json
+python -m diophantine_search.bench profile --solver cube-root --k 33 --bound 3000
+```
+
+Suites: `smoke`, `quick`, `standard`, and `modulus-sweep`. The timing protocol,
+suite definitions, and rules for recording results are in
+[docs/benchmarking.md](docs/benchmarking.md). Any performance claim in this
+project must cite a committed results file under `benchmarks/results/`.
+
 ## Layout
 
 ```text
 docs/three-cubes-spec.md                    correctness contract
+docs/benchmarking.md                        benchmark protocol and rules
 src/diophantine_search/families/
     three_cubes.py                          definitions, result types, validation
     three_cubes_brute_force.py              reference search
@@ -121,6 +141,7 @@ src/diophantine_search/intmath.py           exact integer cube roots
 src/diophantine_search/testing/
     three_cubes_golden.py                   golden data generator and loader
     three_cubes_conformance.py              reusable solver checks
+src/diophantine_search/bench/               benchmark runner, compare, profile
 src/diophantine_search/__main__.py          command-line tool
 tests/conftest.py                           solvers under test
 tests/data/three_cubes_known.json           verified known solutions

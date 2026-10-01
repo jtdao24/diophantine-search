@@ -75,7 +75,7 @@ If m divides m′, `triples_checked` with m′ is at most `triples_checked` with
 
 Over k ∈ [−100, 100] at B = 30, the exact reproducible totals are 6,234,627 checks (78.1% of brute-force work) for m = 1, 901,453 (11.3%) for m = 9, 131,307 (1.645%) for m = 63, and 11,043 (0.138%) for m = 819.
 
-The default m = 819 = 7·9·13 is the product of 9 and the two smallest primes p ≡ 1 (mod 3), 7 and 13, giving three pairwise-coprime non-surjective cube-residue constraints. Larger moduli such as 819·19 check fewer triples but were slower in Python at feasible bounds because of per-class loop overhead. Powers of 2 such as 4 and 8 provide further non-surjective constraints. The default may be retuned after benchmarking.
+The default m = 819 = 7·9·13 is the product of 9 and the two smallest primes p ≡ 1 (mod 3), 7 and 13, giving three pairwise-coprime non-surjective cube-residue constraints. Timing comparisons between moduli are recorded by the benchmark suites (docs/benchmarking.md). Powers of 2 such as 4 and 8 provide further non-surjective constraints. The default may be retuned after benchmarking.
 
 Implementation note: in C and C++, the `%` operator can return negative values for negative operands; residues must be normalized into [0, m).
 
@@ -95,6 +95,6 @@ Each surviving (x, y) row increments `triples_checked` once and performs one exa
 
 Over k ∈ [−100, 100] at B = 30, the exact reproducible totals are 121,664 candidate rows (1.52% of brute-force triples) for m = 1, 52,796 (0.661%) for m = 9, 23,188 (0.291%) for m = 63, and 9,109 (0.114%) for m = 819. Counts measure candidates rather than cost: one cube-root test costs more than one triple check. Timing belongs to benchmarking.
 
-The default is m = 819. In informal timing, m = 15561 was faster at B = 3000; the default may be retuned after benchmarking.
+The default is m = 819. The default may be retuned from the modulus-sweep benchmark (docs/benchmarking.md).
 
 Implementation note: C and C++ integer division truncates toward zero. The bounds require floor division, so negative operands must be handled explicitly.
