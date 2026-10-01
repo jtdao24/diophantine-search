@@ -54,6 +54,7 @@ def _print_run(document: dict[str, Any]) -> None:
     print(
         f"{'solver':<22} {'k':>5} {'B':>6} {'mode':<5} "
         f"{'median ms':>10} {'min ms':>10} {'checked':>12} {'unit':<7}"
+        .rstrip()
     )
     for record in document["results"]:
         print(
@@ -61,6 +62,7 @@ def _print_run(document: dict[str, Any]) -> None:
             f"{record['mode']:<5} {record['median_ns'] / 1_000_000:>10.3f} "
             f"{record['min_ns'] / 1_000_000:>10.3f} "
             f"{record['triples_checked']:>12} {record['count_unit']:<7}"
+            .rstrip()
         )
 
 
@@ -102,6 +104,7 @@ def _compare_command(arguments: argparse.Namespace) -> int:
     print(
         f"{'solver':<22} {'k':>5} {'B':>6} {'mode':<5} "
         f"{'old ms':>10} {'new ms':>10} {'speedup':>9}"
+        .rstrip()
     )
     for match in comparison["matches"]:
         print(
@@ -110,6 +113,7 @@ def _compare_command(arguments: argparse.Namespace) -> int:
             f"{match['old_median_ns'] / 1_000_000:>10.3f} "
             f"{match['new_median_ns'] / 1_000_000:>10.3f} "
             f"{match['speedup']:>8.2f}x"
+            .rstrip()
         )
     for key in comparison["only_in_old"]:
         print(f"warning: only in old: {key}")

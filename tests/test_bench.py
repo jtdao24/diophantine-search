@@ -310,6 +310,37 @@ def test_compare_and_profile_cli(smoke_document, tmp_path, capsys):
     assert "# k=33 bound=50 solutions=" in profile_output
 
 
+def test_run_and_compare_output_has_no_trailing_whitespace(
+    smoke_document, tmp_path, capsys
+):
+    assert main(["run", "--suite", "smoke", "--repeats", "1"]) == 0
+    run_lines = capsys.readouterr().out.splitlines()
+    assert all(line == line.rstrip() for line in run_lines)
+
+    old = tmp_path / "old.json"
+    new = tmp_path / "new.json"
+    old.write_text(dump_run(smoke_document), encoding="utf-8")
+    new.write_text(dump_run(smoke_document), encoding="utf-8")
+    assert main(["compare", str(old), str(new)]) == 0
+    compare_lines = capsys.readouterr().out.splitlines()
+    assert all(line == line.rstrip() for line in compare_lines)
+
+
+def test_git_metadata_ignores_untracked_files(monkeypatch):
+    calls = []
+
+    def fake_run(arguments, **kwargs):
+        calls.append(arguments)
+        return SimpleNamespace(returncode=0, stdout="")
+
+    monkeypatch.setattr(runner.subprocess, "run", fake_run)
+    environment_metadata()
+    assert calls == [
+        ["git", "rev-parse", "HEAD"],
+        ["git", "status", "--porcelain", "--untracked-files=no"],
+    ]
+
+
 @pytest.mark.parametrize("failure", ["raise", "nonzero"])
 def test_git_metadata_failures(monkeypatch, failure):
     def fake_run(*args, **kwargs):

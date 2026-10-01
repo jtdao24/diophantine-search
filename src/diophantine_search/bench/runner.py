@@ -340,7 +340,9 @@ def environment_metadata() -> dict[str, Any]:
     """Collect interpreter, machine, clock, and repository metadata."""
 
     commit_result = _git_command(["git", "rev-parse", "HEAD"])
-    status_result = _git_command(["git", "status", "--porcelain"])
+    status_result = _git_command(
+        ["git", "status", "--porcelain", "--untracked-files=no"]
+    )
     return {
         "python_version": platform.python_version(),
         "implementation": platform.python_implementation(),

@@ -68,6 +68,9 @@ python -m diophantine_search.bench profile --solver modular --modulus 63 --k 3 -
 ```
 
 Store committed results as
-`benchmarks/results/<YYYY-MM-DD>-<suite>-<short commit>.json`. Compare runs only
-when their environment metadata describes the same environment. Any performance
-claim in project documentation must cite a committed result file.
+`benchmarks/results/<YYYY-MM-DD>-<suite>-<short commit>.json`, where
+`<YYYY-MM-DD>` is the local date of the run; `environment.timestamp_utc` records
+the exact time in UTC. Produce results from a tree whose tracked files have no
+uncommitted changes (`git_dirty` is false; untracked files are ignored). Compare
+runs only when their environment metadata describes the same environment. Any
+performance claim in project documentation must cite a committed result file.
