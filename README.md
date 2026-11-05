@@ -21,6 +21,8 @@ backed by a mathematical argument and a reproducible benchmark.
   computes the only possible z with an exact integer cube root, and uses cube
   residues to skip pairs that cannot work. This takes the search from order
   B³ candidate triples to order B² candidate rows.
+- A native C++ version of the cube-root row solver, called from Python. It
+  returns the same solutions and the same row counts as the Python version.
 - A conformance suite that any solver must pass, backed by independently
   generated golden data and mutant solvers that prove the checks catch bugs.
 - A command-line tool.
@@ -37,6 +39,20 @@ python -m venv .venv
 source .venv/bin/activate       # macOS / Linux
 pip install -e . pytest
 ```
+
+### Building the native solver (optional)
+
+Everything else works without this step; the native tests are skipped if the
+library has not been built. It needs CMake and a C++20 compiler.
+
+```text
+cmake -S native -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++
+cmake --build build/native
+```
+
+To make a missing library a test failure instead of a skip, set
+`DIOPHANTINE_REQUIRE_NATIVE=1`. To use a library somewhere else, set
+`DIOPHANTINE_NATIVE_LIB` to its path.
 
 ## Usage
 
@@ -60,6 +76,7 @@ solutions:
 | `brute-force` (default) | Checks every sorted triple in the box | not allowed |
 | `modular` | Skips triples ruled out by cube residues | 1 to 100,000, default 819 |
 | `cube-root` | Solves for z in each surviving (x, y) row | 1 to 100,000, default 819 |
+| `native` | The same row search in C++ (must be built first) | 1 to 100,000, default 819 |
 
 ```text
 $ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular
@@ -75,13 +92,18 @@ $ python -m diophantine_search three-cubes --k 29 --bound 1000 --solver cube-roo
 # k=29 bound=1000 solutions=4 triples_checked=58493
 ```
 
-For the cube-root solver, `triples_checked` counts candidate (x, y) rows, each
-tested with one exact cube root. Compare solvers by time, not by this count.
+For the `cube-root` and `native` solvers, `triples_checked` counts candidate
+(x, y) rows, each with one exact cube test. Compare solvers by time, not by
+this count.
 
-Some moduli make the cube-root solver build a large lookup table the first
-time they are used; the table size is capped, and moduli that would exceed the
-cap are rejected. The pruning rules and their proofs are in sections 8 and 9 of
-the [spec](docs/three-cubes-spec.md).
+Some moduli make these two solvers build a large lookup table the first time
+they are used; the table size is capped, and moduli that would exceed the cap
+are rejected.
+
+The `native` solver uses 64-bit integers, so it requires
+`|k| + 3B³ ≤ 2⁶³ − 1`, which means B ≤ 1,454,083. Anything outside that range is
+an error, never a wrong answer. The pruning rules and their proofs are in
+sections 8 to 10 of the [spec](docs/three-cubes-spec.md).
 
 ## Tests
 
@@ -122,7 +144,8 @@ python -m diophantine_search.bench compare old.json new.json
 python -m diophantine_search.bench profile --solver cube-root --k 33 --bound 3000
 ```
 
-Suites: `smoke`, `quick`, `standard`, and `modulus-sweep`. The timing protocol,
+Suites: `smoke`, `quick`, `standard`, `modulus-sweep`, `native`, and
+`native-sweep` (the last two need the native library). The timing protocol,
 suite definitions, and rules for recording results are in
 [docs/benchmarking.md](docs/benchmarking.md). Any performance claim in this
 project must cite a committed results file under `benchmarks/results/`.
@@ -160,11 +183,13 @@ moves to C++.
 ```text
 docs/three-cubes-spec.md                    correctness contract
 docs/benchmarking.md                        benchmark protocol and rules
+native/                                     C++ row search and its build file
 src/diophantine_search/families/
     three_cubes.py                          definitions, result types, validation
     three_cubes_brute_force.py              reference search
     three_cubes_modular.py                  modular-pruning solver
     three_cubes_cube_root.py                cube-root row solver
+    three_cubes_native.py                   Python binding for the C++ solver
 src/diophantine_search/intmath.py           exact integer cube roots
 src/diophantine_search/testing/
     three_cubes_golden.py                   golden data generator and loader

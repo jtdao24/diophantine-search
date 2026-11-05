@@ -13,6 +13,10 @@ from diophantine_search.families.three_cubes_modular import (
     MAX_MODULUS,
     modular_search,
 )
+from diophantine_search.families.three_cubes_native import (
+    NativeLibraryError,
+    native_search,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -25,7 +29,7 @@ def main(argv: list[str] | None = None) -> int:
     three_cubes.add_argument("--bound", type=int, required=True)
     three_cubes.add_argument(
         "--solver",
-        choices=("brute-force", "modular", "cube-root"),
+        choices=("brute-force", "modular", "cube-root", "native"),
         default="brute-force",
     )
     three_cubes.add_argument("--modulus", type=int, default=None)
@@ -37,20 +41,28 @@ def main(argv: list[str] | None = None) -> int:
     instance = SearchInstance(args.k, args.bound)
     if args.solver == "brute-force":
         if args.modulus is not None:
-            parser.error("--modulus requires --solver modular or cube-root")
+            parser.error(
+                "--modulus requires --solver modular, cube-root, or native"
+            )
         result = brute_force_search(instance)
     elif args.solver == "modular":
         modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
         if not 1 <= modulus <= MAX_MODULUS:
             parser.error(f"--modulus must be in [1, {MAX_MODULUS}]")
         result = modular_search(instance, modulus)
-    else:
+    elif args.solver == "cube-root":
         modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
         try:
             y_class_table(modulus)
         except (TypeError, ValueError) as error:
             parser.error(str(error))
         result = cube_root_search(instance, modulus)
+    else:
+        modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
+        try:
+            result = native_search(instance, modulus)
+        except (NativeLibraryError, TypeError, ValueError) as error:
+            parser.error(str(error))
     for triple in result.solutions:
         suffix = " trivial" if is_trivial(triple) else ""
         print(*triple, end=f"{suffix}\n")

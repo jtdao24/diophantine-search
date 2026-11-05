@@ -23,6 +23,14 @@ def test_maintained_files_end_with_exactly_one_newline():
             and not excluded.intersection(path.parts)
         )
 
+    native = root / "native"
+    files.append(native / "CMakeLists.txt")
+    files.extend(
+        path
+        for path in native.rglob("*")
+        if path.is_file() and path.suffix in {".cpp", ".h"}
+    )
+
     for path in files:
         content = path.read_bytes()
         assert content, f"{path} is empty"

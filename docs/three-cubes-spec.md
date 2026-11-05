@@ -98,3 +98,22 @@ Over k ∈ [−100, 100] at B = 30, the exact reproducible totals are 121,664 ca
 The default is m = 819. The default may be retuned from the modulus-sweep benchmark (docs/benchmarking.md).
 
 Implementation note: C and C++ integer division truncates toward zero. The bounds require floor division, so negative operands must be handled explicitly.
+
+## 10. Native row search
+
+The native C++ row search has the same solution and `triples_checked` contract
+as §9. Its supported range is
+|k| + 3B³ ≤ 2⁶³ − 1, hence B ≤ 1,454,083. At that maximum bound,
+|k| ≤ 18,710,051,606,446. Out-of-range input is an error and never wraps.
+
+The largest intermediate magnitude is |k| + 2B³. The supported-range rule
+therefore leaves a margin of B³, agrees with the signed-int64 limit in §5, and
+prevents signed overflow throughout the search. The implementation uses exact
+integer arithmetic without floating point or wider integer types.
+
+For each x, candidate y values are visited in ascending order. Consequently
+t = k − x³ − y³ strictly decreases, so a pointer to the possible z cube never
+needs to rise. The lower y bound gives t ≤ B³, making z = B a valid starting
+point. The upper y bound gives y³ ≤ t, so the pointer stops at z ≥ y and never
+leaves the cube array. This moving-pointer test is exact and preserves the
+lexicographic result order and the candidate-row count defined in §9.

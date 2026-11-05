@@ -24,10 +24,11 @@ records every repeat, the minimum, and the median rounded down to an integer.
 Candidate counts must remain identical across repeats.
 
 For bounds up to and including 200, the reference is the brute-force solver. For
-larger bounds, the reference is the cube-root solver with modulus 9. Above 200,
-the reference therefore shares the row algorithm with cube-root benchmark cases,
-but it does not share their default residue table. Algorithm correctness is
-covered independently by the conformance suite.
+bounds from 201 through 10000, the reference is the Python cube-root solver with
+modulus 9. Above 10000, it is the native solver with modulus 9. At those larger
+bounds the reference is the same native code with a different residue table, so
+it is a weaker check than the conformance suite and the exact agreement with the
+Python solver below that bound.
 
 ## Fixed suites
 
@@ -39,6 +40,8 @@ Every combination below runs once in cold mode and once in warm mode.
 | `quick` | 3, 29, 30, 33, 42, 52 | brute-force at B=100; modular m=819 at B=100,400; cube-root m=819 at B=100,400,3000 | 5 |
 | `standard` | 3, 29, 30, 33, 42, 52, 74, 114 | brute-force at B=100,200; modular m=819 at B=200,400,800; cube-root m=819 at B=1000,3000,10000 | 5 |
 | `modulus-sweep` | 3, 33, 42 | cube-root with m=63,819,3276,6552,15561 at B=1000,3000,10000; modular with m=63,819,3276,6552 at B=200,400 | 3 |
+| `native` | 3, 29, 30, 33, 42, 52, 74, 114 | native m=819 at B=1000,3000,10000,100000 | 3 |
+| `native-sweep` | 3, 29, 33, 42 | native with m=819,3276,6552,15561 at B=10000,100000 | 3 |
 
 Cases retain the listed solver order, then target order, then bound order.
 

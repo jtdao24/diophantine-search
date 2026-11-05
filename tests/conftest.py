@@ -11,6 +11,11 @@ from diophantine_search.families.three_cubes_brute_force import (
 )
 from diophantine_search.families.three_cubes_cube_root import cube_root_search
 from diophantine_search.families.three_cubes_modular import modular_search
+from diophantine_search.families.three_cubes_native import (
+    is_available,
+    library_path,
+    native_search,
+)
 from diophantine_search.testing.three_cubes_golden import load_golden
 
 SOLVERS = {
@@ -22,7 +27,25 @@ SOLVERS = {
     "cube_root_m1": partial(cube_root_search, modulus=1),
     "cube_root_m63": partial(cube_root_search, modulus=63),
 }
+if is_available():
+    SOLVERS.update(
+        {
+            "native": native_search,
+            "native_m63": partial(native_search, modulus=63),
+            "native_m1": partial(native_search, modulus=1),
+        }
+    )
 DATA = Path(__file__).parent / "data"
+
+
+def pytest_report_header(config):
+    """Report whether conformance includes the native shared library."""
+
+    del config
+    path = library_path()
+    if path is not None and is_available():
+        return f"native library: {path}"
+    return "native library: not built"
 
 
 @pytest.fixture(params=tuple(SOLVERS.values()), ids=tuple(SOLVERS))

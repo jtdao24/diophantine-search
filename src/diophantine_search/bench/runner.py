@@ -41,6 +41,10 @@ from diophantine_search.families.three_cubes_modular import (
     cube_root_classes,
     modular_search,
 )
+from diophantine_search.families.three_cubes_native import (
+    clear_native_cache,
+    native_search,
+)
 
 
 class BenchmarkError(Exception):
@@ -55,13 +59,18 @@ class SolverConfig:
     modulus: int | None
 
     def __post_init__(self) -> None:
-        if self.name not in {"brute-force", "modular", "cube-root"}:
+        if self.name not in {
+            "brute-force",
+            "modular",
+            "cube-root",
+            "native",
+        }:
             raise ValueError(f"unknown solver {self.name!r}")
         if (self.name == "brute-force") != (self.modulus is None):
             raise ValueError("modulus must be None exactly for brute-force")
         if self.name == "modular":
             cube_residues(self.modulus)
-        elif self.name == "cube-root":
+        elif self.name in {"cube-root", "native"}:
             residues = cube_residues(self.modulus)
             if self.modulus * len(residues) > MAX_TABLE_ENTRIES:
                 raise ValueError(
@@ -80,7 +89,7 @@ class SolverConfig:
     def count_unit(self) -> str:
         """Return the unit measured by ``triples_checked``."""
 
-        return "rows" if self.name == "cube-root" else "triples"
+        return "rows" if self.name in {"cube-root", "native"} else "triples"
 
     def run(self, instance: SearchInstance) -> SearchResult:
         """Run this solver configuration on an instance."""
@@ -89,7 +98,9 @@ class SolverConfig:
             return brute_force_search(instance)
         if self.name == "modular":
             return modular_search(instance, self.modulus)
-        return cube_root_search(instance, self.modulus)
+        if self.name == "cube-root":
+            return cube_root_search(instance, self.modulus)
+        return native_search(instance, self.modulus)
 
 
 def clear_solver_caches() -> None:
@@ -97,6 +108,7 @@ def clear_solver_caches() -> None:
 
     cube_root_classes.cache_clear()
     y_class_table.cache_clear()
+    clear_native_cache()
 
 
 @dataclass(frozen=True)
@@ -133,6 +145,7 @@ def _cases(
 _BRUTE_FORCE = SolverConfig("brute-force", None)
 _MODULAR_819 = SolverConfig("modular", 819)
 _CUBE_ROOT_819 = SolverConfig("cube-root", 819)
+_NATIVE_819 = SolverConfig("native", 819)
 
 SUITES: dict[str, Suite] = {
     "smoke": Suite(
@@ -190,16 +203,52 @@ SUITES: dict[str, Suite] = {
         ),
         3,
     ),
+    "native": Suite(
+        "native",
+        "Native row search across large representative bounds.",
+        _cases(
+            ((_NATIVE_819, (1000, 3000, 10000, 100000)),),
+            (3, 29, 30, 33, 42, 52, 74, 114),
+        ),
+        3,
+    ),
+    "native-sweep": Suite(
+        "native-sweep",
+        "Native row search comparison across fixed moduli.",
+        _cases(
+            tuple(
+                (SolverConfig("native", modulus), (10000, 100000))
+                for modulus in (819, 3276, 6552, 15561)
+            ),
+            (3, 29, 33, 42),
+        ),
+        3,
+    ),
 }
+
+
+def reference_name(bound: int) -> str:
+    """Return the reference solver label selected for a bound."""
+
+    if bound <= 200:
+        return "brute-force"
+    if bound <= 10000:
+        return "cube-root[m=9]"
+    return "native[m=9]"
 
 
 def reference_solutions(k: int, bound: int) -> tuple[str, tuple[Triple, ...]]:
     """Return the named reference solution set for an instance."""
 
     instance = SearchInstance(k, bound)
-    if bound <= 200:
-        return "brute-force", brute_force_search(instance).solutions
-    return "cube-root[m=9]", cube_root_search(instance, modulus=9).solutions
+    name = reference_name(bound)
+    if name == "brute-force":
+        solutions = brute_force_search(instance).solutions
+    elif name == "cube-root[m=9]":
+        solutions = cube_root_search(instance, modulus=9).solutions
+    else:
+        solutions = native_search(instance, modulus=9).solutions
+    return name, solutions
 
 
 def _timed_run(case: Case) -> tuple[int, SearchResult]:

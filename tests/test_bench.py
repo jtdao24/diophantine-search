@@ -19,6 +19,7 @@ from diophantine_search.bench.runner import (
     dump_run,
     environment_metadata,
     load_run,
+    reference_name,
     reference_solutions,
     run_suite,
     time_case,
@@ -29,6 +30,10 @@ from diophantine_search.families.three_cubes import (
 )
 from diophantine_search.families.three_cubes_cube_root import y_class_table
 from diophantine_search.families.three_cubes_modular import cube_root_classes
+from diophantine_search.families.three_cubes_native import (
+    _load_library,
+    is_available,
+)
 
 
 RESULT_KEYS = [
@@ -162,6 +167,25 @@ def test_config_modulus_relationships():
         SolverConfig("modular", None)
 
 
+def test_native_config_is_lazy_and_uses_rows():
+    _load_library.cache_clear()
+    config = SolverConfig("native", 819)
+    assert config.label == "native[m=819]"
+    assert config.count_unit == "rows"
+    assert _load_library.cache_info().currsize == 0
+    with pytest.raises(ValueError):
+        SolverConfig("native", None)
+    with pytest.raises(ValueError):
+        SolverConfig("native", 43_010)
+
+
+def test_clear_solver_caches_clears_native(monkeypatch):
+    calls = []
+    monkeypatch.setattr(runner, "clear_native_cache", lambda: calls.append(1))
+    clear_solver_caches()
+    assert calls == [1]
+
+
 def test_verification_guard_and_cli_does_not_write(monkeypatch, tmp_path, capsys):
     original_run = SolverConfig.run
 
@@ -189,6 +213,10 @@ def test_verification_guard_and_cli_does_not_write(monkeypatch, tmp_path, capsys
 
 
 def test_reference_threshold():
+    assert reference_name(200) == "brute-force"
+    assert reference_name(201) == "cube-root[m=9]"
+    assert reference_name(10_000) == "cube-root[m=9]"
+    assert reference_name(10_001) == "native[m=9]"
     assert reference_solutions(3, 200)[0] == "brute-force"
     assert reference_solutions(3, 201)[0] == "cube-root[m=9]"
 
@@ -199,10 +227,34 @@ def test_suite_names_and_case_counts():
         "quick",
         "standard",
         "modulus-sweep",
+        "native",
+        "native-sweep",
     }
     assert {
         name: len(suite.cases) for name, suite in runner.SUITES.items()
-    } == {"smoke": 12, "quick": 36, "standard": 64, "modulus-sweep": 69}
+    } == {
+        "smoke": 12,
+        "quick": 36,
+        "standard": 64,
+        "modulus-sweep": 69,
+        "native": 32,
+        "native-sweep": 32,
+    }
+
+
+@pytest.mark.skipif(not is_available(), reason="native library not built")
+def test_native_case_runs_through_benchmark_suite():
+    suite = Suite(
+        "native-one",
+        "one native case",
+        (Case(SolverConfig("native", 819), 3, 10),),
+        1,
+    )
+    document = run_suite(suite)
+    assert [record["mode"] for record in document["results"]] == [
+        "cold",
+        "warm",
+    ]
 
 
 def _document(results, *, python_version="3.12", timestamp="one"):
