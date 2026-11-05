@@ -22,7 +22,8 @@ backed by a mathematical argument and a reproducible benchmark.
   residues to skip pairs that cannot work. This takes the search from order
   B³ candidate triples to order B² candidate rows.
 - A native C++ version of the cube-root row solver, called from Python. It
-  returns the same solutions and the same row counts as the Python version.
+  returns the same solutions as the Python version, and the same row counts at
+  the same modulus.
 - A conformance suite that any solver must pass, backed by independently
   generated golden data and mutant solvers that prove the checks catch bugs.
 - A command-line tool.
@@ -76,7 +77,7 @@ solutions:
 | `brute-force` (default) | Checks every sorted triple in the box | not allowed |
 | `modular` | Skips triples ruled out by cube residues | 1 to 100,000, default 819 |
 | `cube-root` | Solves for z in each surviving (x, y) row | 1 to 100,000, default 819 |
-| `native` | The same row search in C++ (must be built first) | 1 to 100,000, default 819 |
+| `native` | The same row search in C++ (must be built first) | 1 to 100,000, default 15561 |
 
 ```text
 $ python -m diophantine_search three-cubes --k 3 --bound 5 --solver modular
@@ -175,8 +176,30 @@ summed over k = 3, 33, 42:
 | cube-root | warm, B = 10,000 | 15561 | 2.59× slower |
 | modular | B = 200, 400 | 3276 or 6552 | 3–8% slower |
 
-The default modulus stays 819 for now; it will be re-measured once the hot loop
-moves to C++.
+The Python solvers keep 819 as their default.
+
+From [the native suite](benchmarks/results/2026-11-04-native-66d8927.json),
+recorded at commit `66d8927` on the same machine, compared with the Python
+cube-root solver in the standard suite above, both at m = 819:
+
+| Bound | Median speedup across the 8 targets | Range |
+|---|---|---|
+| B = 1,000 | 54.5× | 40–80× |
+| B = 3,000 | 72.4× | 64–101× |
+| B = 10,000 | 77.8× | 69–105× |
+
+Row counts and solution counts match Python in every shared case. At
+B = 100,000 and m = 819, the native solver takes 0.44 s (k = 3) to 2.8 s (k = 29)
+per target.
+
+From [the native sweep](benchmarks/results/2026-11-05-native-sweep-66d8927.json),
+summed over k = 3, 29, 33, 42, the native solver's default of 15561 compares
+with 819 as follows:
+
+| Bound | Warm | Cold |
+|---|---|---|
+| B = 10,000 | 1.81× faster | 2.25× slower (one-time table build) |
+| B = 100,000 | 1.50× faster | 1.46× faster |
 
 ## Layout
 

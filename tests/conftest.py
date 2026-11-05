@@ -33,6 +33,7 @@ if is_available():
             "native": native_search,
             "native_m63": partial(native_search, modulus=63),
             "native_m1": partial(native_search, modulus=1),
+            "native_m819": partial(native_search, modulus=819),
         }
     )
 DATA = Path(__file__).parent / "data"

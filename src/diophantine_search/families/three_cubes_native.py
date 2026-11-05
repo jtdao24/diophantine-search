@@ -16,11 +16,12 @@ from diophantine_search.families.three_cubes_cube_root import (
     MAX_TABLE_ENTRIES,
 )
 from diophantine_search.families.three_cubes_modular import (
-    DEFAULT_MODULUS,
     cube_residues,
 )
 
 NATIVE_MAX_BOUND = 1_454_083
+# Selected by benchmarks/results/2026-11-05-native-sweep-66d8927.json.
+NATIVE_DEFAULT_MODULUS = 15_561
 _MAX_INT64 = 2**63 - 1
 _BUILD_COMMANDS = (
     "cmake -S native -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Release "
@@ -159,7 +160,7 @@ def _call_search(
 
 def native_search(
     instance: SearchInstance,
-    modulus: int = DEFAULT_MODULUS,
+    modulus: int = NATIVE_DEFAULT_MODULUS,
 ) -> SearchResult:
     """Run native row search with Python-equivalent results and row counts."""
 

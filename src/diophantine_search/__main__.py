@@ -14,6 +14,7 @@ from diophantine_search.families.three_cubes_modular import (
     modular_search,
 )
 from diophantine_search.families.three_cubes_native import (
+    NATIVE_DEFAULT_MODULUS,
     NativeLibraryError,
     native_search,
 )
@@ -58,7 +59,11 @@ def main(argv: list[str] | None = None) -> int:
             parser.error(str(error))
         result = cube_root_search(instance, modulus)
     else:
-        modulus = DEFAULT_MODULUS if args.modulus is None else args.modulus
+        modulus = (
+            NATIVE_DEFAULT_MODULUS
+            if args.modulus is None
+            else args.modulus
+        )
         try:
             result = native_search(instance, modulus)
         except (NativeLibraryError, TypeError, ValueError) as error:

@@ -117,3 +117,9 @@ needs to rise. The lower y bound gives t ≤ B³, making z = B a valid starting
 point. The upper y bound gives y³ ≤ t, so the pointer stops at z ≥ y and never
 leaves the cube array. This moving-pointer test is exact and preserves the
 lexicographic result order and the candidate-row count defined in §9.
+
+The native default is m = 15561, while the Python solvers remain at m = 819.
+In `benchmarks/results/2026-11-05-native-sweep-66d8927.json`, summed over
+k = 3, 29, 33, 42, m = 15561 is 1.81x faster than m = 819 warm at B = 10000
+and 1.46x cold / 1.50x warm at B = 100000. Only the cold run at B = 10000
+is slower (2.25x) because of the one-time table build.

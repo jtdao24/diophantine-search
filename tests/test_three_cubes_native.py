@@ -18,6 +18,7 @@ from diophantine_search.families.three_cubes import (
 from diophantine_search.families.three_cubes_cube_root import cube_root_search
 from diophantine_search.families.three_cubes_modular import MAX_MODULUS
 from diophantine_search.families.three_cubes_native import (
+    NATIVE_DEFAULT_MODULUS,
     NATIVE_MAX_BOUND,
     NativeLibraryError,
     _load_library,
@@ -160,12 +161,12 @@ def _direct_search(k, bound, modulus, output, capacity):
 @REQUIRES_NATIVE
 def test_native_buffer_retry_and_direct_capacity():
     instance = SearchInstance(8, 2000)
-    expected = cube_root_search(instance)
-    actual = native_search(instance)
+    expected = cube_root_search(instance, 819)
+    actual = native_search(instance, 819)
     assert len(expected.solutions) > 1024
     assert actual == expected
 
-    direct_expected = cube_root_search(SearchInstance(8, 10))
+    direct_expected = cube_root_search(SearchInstance(8, 10), 819)
     status, count, checked = _direct_search(8, 10, 819, None, 0)
     assert status == 1
     assert count == len(direct_expected.solutions)
@@ -374,8 +375,26 @@ def test_native_cache_and_threads():
 
 
 @REQUIRES_NATIVE
+def test_native_default_modulus():
+    assert NATIVE_DEFAULT_MODULUS == 15_561
+    instance = SearchInstance(29, 100)
+    assert native_search(instance) == native_search(instance, 15_561)
+
+
+@REQUIRES_NATIVE
+def test_native_default_solutions_match_python():
+    for k in (3, 29, 33, 42):
+        instance = SearchInstance(k, 400)
+        assert native_search(instance, 15_561).solutions == cube_root_search(
+            instance, 819
+        ).solutions
+
+
+@REQUIRES_NATIVE
 def test_native_cli(capsys):
-    expected_count = cube_root_search(SearchInstance(3, 5)).triples_checked
+    expected_count = native_search(
+        SearchInstance(3, 5), 15_561
+    ).triples_checked
     assert main(
         [
             "three-cubes",
