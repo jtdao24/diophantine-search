@@ -20,6 +20,7 @@ DS_API int ds_cube_root_search(
     int64_t k,
     int64_t bound,
     int64_t modulus,
+    int64_t threads,
     int64_t* out,
     int64_t capacity,
     int64_t* count,

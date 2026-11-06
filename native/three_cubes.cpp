@@ -1,6 +1,8 @@
 #include "three_cubes.h"
 
 #include <algorithm>
+#include <array>
+#include <atomic>
 #include <bit>
 #include <cstddef>
 #include <cstdint>
@@ -8,6 +10,8 @@
 #include <memory>
 #include <mutex>
 #include <new>
+#include <system_error>
+#include <thread>
 #include <utility>
 #include <vector>
 
@@ -16,11 +20,18 @@ namespace {
 constexpr std::int64_t kMaxBound = 1'454'083;
 constexpr std::int64_t kMaxModulus = 100'000;
 constexpr std::int64_t kMaxTableEntries = 5'000'000;
+constexpr std::int64_t kMaxThreads = 256;
+constexpr std::int64_t kChunk = 64;
 
 struct Table {
     std::int64_t modulus;
     std::vector<std::int32_t> offsets;
     std::vector<std::int32_t> data;
+};
+
+struct alignas(64) WorkerState {
+    std::vector<std::array<std::int64_t, 3>> solutions;
+    std::int64_t checked = 0;
 };
 
 std::mutex table_mutex;
@@ -194,10 +205,133 @@ std::size_t cube_index(std::int64_t value, std::int64_t bound) noexcept {
     return static_cast<std::size_t>(value + bound);
 }
 
+void process_rows(
+    std::int64_t k,
+    std::int64_t bound,
+    std::int64_t modulus,
+    std::int64_t bound_cube,
+    std::int64_t x_begin,
+    std::int64_t x_end,
+    const std::int64_t* cubes,
+    const std::int32_t* offsets,
+    const std::int32_t* data,
+    WorkerState* state
+) {
+    std::int64_t local_checked = 0;
+    for (std::int64_t x = x_begin; x < x_end; ++x) {
+        const std::int64_t rest = k - cubes[cube_index(x, bound)];
+        const std::int64_t low = std::max(
+            x, icbrt_ceil_impl(rest - bound_cube)
+        );
+        const std::int64_t high = std::min(
+            bound, icbrt_floor_impl(floor_div(rest, 2))
+        );
+        if (low > high) {
+            continue;
+        }
+
+        const std::size_t table_index = static_cast<std::size_t>(
+            nonnegative_mod(rest, modulus)
+        );
+        const std::int32_t class_start = offsets[table_index];
+        const std::int32_t class_end = offsets[table_index + 1U];
+        if (class_start == class_end) {
+            continue;
+        }
+
+        std::int64_t z = bound;
+        const std::int64_t first_base = low - nonnegative_mod(low, modulus);
+        for (
+            std::int64_t base = first_base;
+            base <= high;
+            base += modulus
+        ) {
+            for (
+                std::int32_t position = class_start;
+                position < class_end;
+                ++position
+            ) {
+                const std::int64_t y = base + static_cast<std::int64_t>(
+                    data[static_cast<std::size_t>(position)]
+                );
+                if (y < low) {
+                    continue;
+                }
+                if (y > high) {
+                    break;
+                }
+
+                ++local_checked;
+                const std::int64_t target =
+                    rest - cubes[cube_index(y, bound)];
+
+                // y rises, so target = rest - y^3 strictly falls and z never
+                // needs to rise. The lower bound gives target <= B^3, making
+                // z = B a valid start. The upper bound gives y^3 <= target,
+                // so the pointer stops at z >= y and never leaves the array.
+                while (
+                    z > -bound && cubes[cube_index(z, bound)] > target
+                ) {
+                    --z;
+                }
+                if (cubes[cube_index(z, bound)] == target) {
+                    state->solutions.push_back({x, y, z});
+                }
+            }
+        }
+    }
+    state->checked += local_checked;
+}
+
+void run_worker(
+    std::int64_t k,
+    std::int64_t bound,
+    std::int64_t modulus,
+    std::int64_t bound_cube,
+    std::int64_t x_upper,
+    const std::int64_t* cubes,
+    const std::int32_t* offsets,
+    const std::int32_t* data,
+    std::atomic<std::int64_t>* next,
+    std::atomic<bool>* failed,
+    WorkerState* state
+) noexcept {
+    try {
+        while (!failed->load(std::memory_order_relaxed)) {
+            const std::int64_t start = next->fetch_add(
+                kChunk, std::memory_order_relaxed
+            );
+            if (start > x_upper) {
+                break;
+            }
+            const std::int64_t end = std::min(
+                start + kChunk, x_upper + 1
+            );
+            process_rows(
+                k,
+                bound,
+                modulus,
+                bound_cube,
+                start,
+                end,
+                cubes,
+                offsets,
+                data,
+                state
+            );
+        }
+    } catch (const std::bad_alloc&) {
+        failed->store(true, std::memory_order_relaxed);
+    } catch (...) {
+        failed->store(true, std::memory_order_relaxed);
+    }
+}
+
 int search_impl(
     std::int64_t k,
     std::int64_t bound,
     std::int64_t modulus,
+    std::int64_t requested_threads,
     std::int64_t* out,
     std::int64_t capacity,
     std::int64_t* count,
@@ -215,6 +349,9 @@ int search_impl(
         return 2;
     }
     if (modulus < 1 || modulus > kMaxModulus) {
+        return 2;
+    }
+    if (requested_threads < 1 || requested_threads > kMaxThreads) {
         return 2;
     }
     if (k == std::numeric_limits<std::int64_t>::min()) {
@@ -265,74 +402,102 @@ int search_impl(
     const std::int64_t x_upper = std::min(
         bound, icbrt_floor_impl(floor_div(k, 3))
     );
-    for (std::int64_t x = -bound; x <= x_upper; ++x) {
-        const std::int64_t rest = k - cubes[cube_index(x, bound)];
-        const std::int64_t low = std::max(
-            x, icbrt_ceil_impl(rest - bound_cube)
+    const std::int64_t x_count = x_upper + bound + 1;
+    if (x_count <= 0) {
+        return 0;
+    }
+    const std::int64_t chunk_count = (x_count + kChunk - 1) / kChunk;
+    const std::int64_t worker_count = std::max(
+        std::int64_t{1}, std::min(requested_threads, chunk_count)
+    );
+
+    std::vector<WorkerState> workers(
+        static_cast<std::size_t>(worker_count)
+    );
+    alignas(64) std::atomic<std::int64_t> next{-bound};
+    std::atomic<bool> failed{false};
+    std::vector<std::thread> worker_threads;
+    try {
+        worker_threads.reserve(
+            static_cast<std::size_t>(worker_count - 1)
         );
-        const std::int64_t high = std::min(
-            bound, icbrt_floor_impl(floor_div(rest, 2))
+    } catch (...) {
+    }
+
+    for (std::int64_t index = 1; index < worker_count; ++index) {
+        try {
+            worker_threads.emplace_back(
+                run_worker,
+                k,
+                bound,
+                modulus,
+                bound_cube,
+                x_upper,
+                cubes.data(),
+                table->offsets.data(),
+                table->data.data(),
+                &next,
+                &failed,
+                &workers[static_cast<std::size_t>(index)]
+            );
+        } catch (const std::system_error&) {
+            break;
+        } catch (...) {
+            break;
+        }
+    }
+
+    run_worker(
+        k,
+        bound,
+        modulus,
+        bound_cube,
+        x_upper,
+        cubes.data(),
+        table->offsets.data(),
+        table->data.data(),
+        &next,
+        &failed,
+        &workers[0]
+    );
+    for (std::thread& worker : worker_threads) {
+        worker.join();
+    }
+    if (failed.load(std::memory_order_relaxed)) {
+        *count = 0;
+        *checked = 0;
+        return 3;
+    }
+
+    std::int64_t total_checked = 0;
+    std::size_t solution_count = 0;
+    for (const WorkerState& worker : workers) {
+        total_checked += worker.checked;
+        solution_count += worker.solutions.size();
+    }
+    std::vector<std::array<std::int64_t, 3>> solutions;
+    solutions.reserve(solution_count);
+    for (WorkerState& worker : workers) {
+        solutions.insert(
+            solutions.end(),
+            worker.solutions.begin(),
+            worker.solutions.end()
         );
-        if (low > high) {
-            continue;
-        }
+    }
 
-        const std::size_t table_index = static_cast<std::size_t>(
-            nonnegative_mod(rest, modulus)
-        );
-        const std::int32_t class_start = table->offsets[table_index];
-        const std::int32_t class_end = table->offsets[table_index + 1U];
-        if (class_start == class_end) {
-            continue;
-        }
-
-        std::int64_t z = bound;
-        const std::int64_t first_base = low - nonnegative_mod(low, modulus);
-        for (
-            std::int64_t base = first_base;
-            base <= high;
-            base += modulus
-        ) {
-            for (
-                std::int32_t position = class_start;
-                position < class_end;
-                ++position
-            ) {
-                const std::int64_t y = base + static_cast<std::int64_t>(
-                    table->data[static_cast<std::size_t>(position)]
-                );
-                if (y < low) {
-                    continue;
-                }
-                if (y > high) {
-                    break;
-                }
-
-                ++(*checked);
-                const std::int64_t target =
-                    rest - cubes[cube_index(y, bound)];
-
-                // y rises, so target = rest - y^3 strictly falls and z never
-                // needs to rise. The lower bound gives target <= B^3, making
-                // z = B a valid start. The upper bound gives y^3 <= target,
-                // so the pointer stops at z >= y and never leaves the array.
-                while (
-                    z > -bound && cubes[cube_index(z, bound)] > target
-                ) {
-                    --z;
-                }
-                if (cubes[cube_index(z, bound)] == target) {
-                    if (*count < capacity) {
-                        const std::size_t output_index =
-                            static_cast<std::size_t>(*count) * 3U;
-                        out[output_index] = x;
-                        out[output_index + 1U] = y;
-                        out[output_index + 2U] = z;
-                    }
-                    ++(*count);
-                }
-            }
-        }
+    // Every x belongs to exactly one chunk and every chunk to one worker.
+    // Solutions and checked rows are determined independently for each x;
+    // sorting the concatenated worker output restores lexicographic order.
+    std::sort(solutions.begin(), solutions.end());
+    *checked = total_checked;
+    *count = static_cast<std::int64_t>(solutions.size());
+    const std::int64_t copy_count = std::min(*count, capacity);
+    for (std::int64_t index = 0; index < copy_count; ++index) {
+        const std::size_t solution_index = static_cast<std::size_t>(index);
+        const std::size_t output_index = solution_index * 3U;
+        out[output_index] = solutions[solution_index][0];
+        out[output_index + 1U] = solutions[solution_index][1];
+        out[output_index + 2U] = solutions[solution_index][2];
     }
     return *count > capacity ? 1 : 0;
 }
@@ -340,20 +505,23 @@ int search_impl(
 }  // namespace
 
 int ds_abi_version(void) {
-    return 1;
+    return 2;
 }
 
 int ds_cube_root_search(
     std::int64_t k,
     std::int64_t bound,
     std::int64_t modulus,
+    std::int64_t threads,
     std::int64_t* out,
     std::int64_t capacity,
     std::int64_t* count,
     std::int64_t* checked
 ) {
     try {
-        return search_impl(k, bound, modulus, out, capacity, count, checked);
+        return search_impl(
+            k, bound, modulus, threads, out, capacity, count, checked
+        );
     } catch (const std::bad_alloc&) {
         return 3;
     } catch (...) {

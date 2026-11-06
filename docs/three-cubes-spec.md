@@ -123,3 +123,19 @@ In `benchmarks/results/2026-11-05-native-sweep-66d8927.json`, summed over
 k = 3, 29, 33, 42, m = 15561 is 1.81x faster than m = 819 warm at B = 10000
 and 1.46x cold / 1.50x warm at B = 100000. Only the cold run at B = 10000
 is slower (2.25x) because of the one-time table build.
+
+## 11. Parallel row search
+
+The native solver may evaluate row chunks concurrently. Its solutions,
+lexicographic solution order, and `triples_checked` value do not depend on the
+thread count. Each x belongs to exactly one 64-row chunk, each chunk is claimed
+by exactly one worker, and solutions and row counts are determined independently
+for each x. Sorting the concatenated worker results restores lexicographic order.
+
+For x_count rows, the solver uses
+max(1, min(requested threads, ceil(x_count / 64))) workers, with requested thread
+counts limited to 256. The calling thread is one worker. During the search, only
+the atomic chunk counter and atomic failure flag are shared and mutable; cube and
+residue tables are read-only. Each search retains its table until every worker
+has joined, so clearing or replacing the global table cache cannot invalidate an
+active search.

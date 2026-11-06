@@ -229,6 +229,7 @@ def test_suite_names_and_case_counts():
         "modulus-sweep",
         "native",
         "native-sweep",
+        "native-threads",
     }
     assert {
         name: len(suite.cases) for name, suite in runner.SUITES.items()
@@ -239,6 +240,7 @@ def test_suite_names_and_case_counts():
         "modulus-sweep": 69,
         "native": 32,
         "native-sweep": 32,
+        "native-threads": 56,
     }
 
 
@@ -248,6 +250,32 @@ def test_native_case_runs_through_benchmark_suite():
         "native-one",
         "one native case",
         (Case(SolverConfig("native", 819), 3, 10),),
+        1,
+    )
+    document = run_suite(suite)
+    assert [record["mode"] for record in document["results"]] == [
+        "cold",
+        "warm",
+    ]
+
+
+def test_native_thread_config_validation_and_labels():
+    assert SolverConfig("native", 15_561, threads=8).label == (
+        "native[m=15561,t=8]"
+    )
+    assert SolverConfig("native", 819).label == "native[m=819]"
+    with pytest.raises(ValueError):
+        SolverConfig("cube-root", 819, threads=2)
+    with pytest.raises(ValueError):
+        SolverConfig("native", 819, threads=0)
+
+
+@pytest.mark.skipif(not is_available(), reason="native library not built")
+def test_native_threaded_case_runs_through_benchmark_suite():
+    suite = Suite(
+        "native-threaded-one",
+        "one threaded native case",
+        (Case(SolverConfig("native", 819, threads=2), 3, 10),),
         1,
     )
     document = run_suite(suite)

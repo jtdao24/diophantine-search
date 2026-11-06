@@ -20,6 +20,7 @@ from diophantine_search.families.three_cubes_modular import (
 )
 
 NATIVE_MAX_BOUND = 1_454_083
+NATIVE_MAX_THREADS = 256
 # Selected by benchmarks/results/2026-11-05-native-sweep-66d8927.json.
 NATIVE_DEFAULT_MODULUS = 15_561
 _MAX_INT64 = 2**63 - 1
@@ -76,13 +77,15 @@ def _load_library() -> ctypes.CDLL:
     try:
         library.ds_abi_version.argtypes = []
         library.ds_abi_version.restype = ctypes.c_int
-        if library.ds_abi_version() != 1:
+        if library.ds_abi_version() != 2:
             raise NativeLibraryError(
-                f"native library {path} has an incompatible ABI"
+                f"native library {path} has an incompatible ABI; rebuild with:\n"
+                f"{_BUILD_COMMANDS}"
             )
 
         pointer = ctypes.POINTER(ctypes.c_int64)
         library.ds_cube_root_search.argtypes = [
+            ctypes.c_int64,
             ctypes.c_int64,
             ctypes.c_int64,
             ctypes.c_int64,
@@ -141,6 +144,7 @@ def _call_search(
     library: ctypes.CDLL,
     instance: SearchInstance,
     modulus: int,
+    threads: int,
     capacity: int,
 ) -> tuple[int, ctypes.Array[ctypes.c_int64], int, int]:
     output = (ctypes.c_int64 * (3 * capacity))()
@@ -150,6 +154,7 @@ def _call_search(
         instance.k,
         instance.bound,
         modulus,
+        threads,
         output,
         capacity,
         ctypes.byref(count),
@@ -161,21 +166,26 @@ def _call_search(
 def native_search(
     instance: SearchInstance,
     modulus: int = NATIVE_DEFAULT_MODULUS,
+    threads: int = 1,
 ) -> SearchResult:
     """Run native row search with Python-equivalent results and row counts."""
 
     if not isinstance(instance, SearchInstance):
         raise TypeError("instance must be a SearchInstance")
     _validate_modulus(modulus)
+    if not isinstance(threads, int) or isinstance(threads, bool):
+        raise TypeError("threads must be an int")
+    if not 1 <= threads <= NATIVE_MAX_THREADS:
+        raise ValueError(f"threads must be in [1, {NATIVE_MAX_THREADS}]")
     _validate_range(instance)
     library = _load_library()
 
     status, output, count, checked = _call_search(
-        library, instance, modulus, 1024
+        library, instance, modulus, threads, 1024
     )
     if status == 1:
         status, output, count, checked = _call_search(
-            library, instance, modulus, count
+            library, instance, modulus, threads, count
         )
     if status == 2:
         raise ValueError("native library rejected the search arguments")

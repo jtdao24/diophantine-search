@@ -42,6 +42,7 @@ from diophantine_search.families.three_cubes_modular import (
     modular_search,
 )
 from diophantine_search.families.three_cubes_native import (
+    NATIVE_MAX_THREADS,
     clear_native_cache,
     native_search,
 )
@@ -57,6 +58,7 @@ class SolverConfig:
 
     name: str
     modulus: int | None
+    threads: int = 1
 
     def __post_init__(self) -> None:
         if self.name not in {
@@ -76,6 +78,12 @@ class SolverConfig:
                 raise ValueError(
                     f"y-class table exceeds {MAX_TABLE_ENTRIES} entries"
                 )
+        if not isinstance(self.threads, int) or isinstance(self.threads, bool):
+            raise TypeError("threads must be an int")
+        if not 1 <= self.threads <= NATIVE_MAX_THREADS:
+            raise ValueError(f"threads must be in [1, {NATIVE_MAX_THREADS}]")
+        if self.name != "native" and self.threads != 1:
+            raise ValueError("threads other than 1 require the native solver")
 
     @property
     def label(self) -> str:
@@ -83,6 +91,8 @@ class SolverConfig:
 
         if self.modulus is None:
             return self.name
+        if self.name == "native" and self.threads != 1:
+            return f"{self.name}[m={self.modulus},t={self.threads}]"
         return f"{self.name}[m={self.modulus}]"
 
     @property
@@ -100,7 +110,7 @@ class SolverConfig:
             return modular_search(instance, self.modulus)
         if self.name == "cube-root":
             return cube_root_search(instance, self.modulus)
-        return native_search(instance, self.modulus)
+        return native_search(instance, self.modulus, self.threads)
 
 
 def clear_solver_caches() -> None:
@@ -219,6 +229,21 @@ SUITES: dict[str, Suite] = {
             tuple(
                 (SolverConfig("native", modulus), (10000, 100000))
                 for modulus in (819, 3276, 6552, 15561)
+            ),
+            (3, 29, 33, 42),
+        ),
+        3,
+    ),
+    "native-threads": Suite(
+        "native-threads",
+        "Native row search comparison across fixed thread counts.",
+        _cases(
+            tuple(
+                (
+                    SolverConfig("native", 15561, threads=threads),
+                    (10000, 100000),
+                )
+                for threads in (1, 2, 4, 8, 12, 16, 20)
             ),
             (3, 29, 33, 42),
         ),

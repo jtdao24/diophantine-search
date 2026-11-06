@@ -23,7 +23,8 @@ backed by a mathematical argument and a reproducible benchmark.
   B³ candidate triples to order B² candidate rows.
 - A native C++ version of the cube-root row solver, called from Python. It
   returns the same solutions as the Python version, and the same row counts at
-  the same modulus.
+  the same modulus. It can split one search across threads, and its results do
+  not depend on the thread count.
 - A conformance suite that any solver must pass, backed by independently
   generated golden data and mutant solvers that prove the checks catch bugs.
 - A command-line tool.
@@ -54,6 +55,14 @@ cmake --build build/native
 To make a missing library a test failure instead of a skip, set
 `DIOPHANTINE_REQUIRE_NATIVE=1`. To use a library somewhere else, set
 `DIOPHANTINE_NATIVE_LIB` to its path.
+
+An optional stress program compares thread counts directly, without Python:
+
+```text
+cmake -S native -B build/stress -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=clang++ -DDS_BUILD_STRESS=ON
+cmake --build build/stress
+build/stress/stress_three_cubes
+```
 
 ## Usage
 
@@ -103,8 +112,23 @@ are rejected.
 
 The `native` solver uses 64-bit integers, so it requires
 `|k| + 3B³ ≤ 2⁶³ − 1`, which means B ≤ 1,454,083. Anything outside that range is
-an error, never a wrong answer. The pruning rules and their proofs are in
-sections 8 to 10 of the [spec](docs/three-cubes-spec.md).
+an error, never a wrong answer.
+
+The `native` solver runs on one thread unless you add `--threads N` (1 to 256).
+Solutions, their order, and `triples_checked` are the same at any thread count.
+Starting threads has a cost, so small searches can be slower with many threads:
+
+```text
+$ python -m diophantine_search three-cubes --k 29 --bound 1000 --solver native --threads 8
+-233 -69 235
+-20 13 18
+-3 -2 4
+1 1 3
+# k=29 bound=1000 solutions=4 triples_checked=18011
+```
+
+The pruning rules and their proofs are in sections 8 to 11 of the
+[spec](docs/three-cubes-spec.md).
 
 ## Tests
 
@@ -145,8 +169,8 @@ python -m diophantine_search.bench compare old.json new.json
 python -m diophantine_search.bench profile --solver cube-root --k 33 --bound 3000
 ```
 
-Suites: `smoke`, `quick`, `standard`, `modulus-sweep`, `native`, and
-`native-sweep` (the last two need the native library). The timing protocol,
+Suites: `smoke`, `quick`, `standard`, `modulus-sweep`, `native`, `native-sweep`,
+and `native-threads` (the last three need the native library). The timing protocol,
 suite definitions, and rules for recording results are in
 [docs/benchmarking.md](docs/benchmarking.md). Any performance claim in this
 project must cite a committed results file under `benchmarks/results/`.

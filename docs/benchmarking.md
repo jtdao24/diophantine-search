@@ -42,8 +42,11 @@ Every combination below runs once in cold mode and once in warm mode.
 | `modulus-sweep` | 3, 33, 42 | cube-root with m=63,819,3276,6552,15561 at B=1000,3000,10000; modular with m=63,819,3276,6552 at B=200,400 | 3 |
 | `native` | 3, 29, 30, 33, 42, 52, 74, 114 | native m=819 at B=1000,3000,10000,100000 | 3 |
 | `native-sweep` | 3, 29, 33, 42 | native with m=819,3276,6552,15561 at B=10000,100000 | 3 |
+| `native-threads` | 3, 29, 33, 42 | native m=15561 with threads=1,2,4,8,12,16,20 at B=10000,100000 | 3 |
 
 Cases retain the listed solver order, then target order, then bound order.
+The `native-threads` thread list is fixed. Its timings depend on the machine's
+core count and mix of core types.
 
 ## Commands
 

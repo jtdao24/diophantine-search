@@ -34,10 +34,13 @@ def main(argv: list[str] | None = None) -> int:
         default="brute-force",
     )
     three_cubes.add_argument("--modulus", type=int, default=None)
+    three_cubes.add_argument("--threads", type=int, default=None)
 
     args = parser.parse_args(argv)
     if args.bound < 0:
         parser.error("--bound must be nonnegative")
+    if args.threads is not None and args.solver != "native":
+        parser.error("--threads requires --solver native")
 
     instance = SearchInstance(args.k, args.bound)
     if args.solver == "brute-force":
@@ -65,7 +68,8 @@ def main(argv: list[str] | None = None) -> int:
             else args.modulus
         )
         try:
-            result = native_search(instance, modulus)
+            threads = 1 if args.threads is None else args.threads
+            result = native_search(instance, modulus, threads)
         except (NativeLibraryError, TypeError, ValueError) as error:
             parser.error(str(error))
     for triple in result.solutions:

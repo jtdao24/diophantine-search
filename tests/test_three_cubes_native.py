@@ -69,6 +69,7 @@ def test_missing_library_has_no_fallback(monkeypatch, tmp_path, capsys):
 @REQUIRES_NATIVE
 def test_native_integer_cube_roots():
     library = _load_library()
+    assert library.ds_abi_version() == 2
     for value in range(-20_000, 20_001):
         assert library.ds_icbrt_floor(value) == icbrt_floor(value)
         assert library.ds_icbrt_ceil(value) == icbrt_ceil(value)
@@ -143,13 +144,14 @@ def test_native_mod_nine_exclusion(k):
     assert result.triples_checked == 0
 
 
-def _direct_search(k, bound, modulus, output, capacity):
+def _direct_search(k, bound, modulus, output, capacity, threads=1):
     count = ctypes.c_int64(-1)
     checked = ctypes.c_int64(-1)
     status = _load_library().ds_cube_root_search(
         k,
         bound,
         modulus,
+        threads,
         output,
         capacity,
         ctypes.byref(count),
