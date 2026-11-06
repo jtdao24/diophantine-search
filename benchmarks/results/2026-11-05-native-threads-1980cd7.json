@@ -1,0 +1,2036 @@
+{
+  "schema_version": "1",
+  "suite": "native-threads",
+  "repeats": 3,
+  "environment": {
+    "python_version": "3.12.10",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel",
+    "cpu_count": 20,
+    "git_commit": "1980cd7b181f200c4bb0d4fd43f159225a9f0d8f",
+    "git_dirty": false,
+    "timestamp_utc": "2026-11-06T00:56:23.779121+00:00",
+    "timer": "perf_counter_ns",
+    "gc": "disabled during timed calls"
+  },
+  "results": [
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        29636900,
+        29539900,
+        29582400
+      ],
+      "min_ns": 29539900,
+      "median_ns": 29582400,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2883500,
+        2788900,
+        2787600
+      ],
+      "min_ns": 2787600,
+      "median_ns": 2788900,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        306798400,
+        312209500,
+        310036300
+      ],
+      "min_ns": 306798400,
+      "median_ns": 310036300,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        278275400,
+        278514900,
+        275447400
+      ],
+      "min_ns": 275447400,
+      "median_ns": 278275400,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        45757800,
+        45499700,
+        45765600
+      ],
+      "min_ns": 45499700,
+      "median_ns": 45757800,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        19547000,
+        19399100,
+        19377300
+      ],
+      "min_ns": 19377300,
+      "median_ns": 19399100,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        2015454000,
+        2010398000,
+        2013383800
+      ],
+      "min_ns": 2010398000,
+      "median_ns": 2013383800,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        1970333500,
+        1979618300,
+        1986503800
+      ],
+      "min_ns": 1970333500,
+      "median_ns": 1979618300,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        31176600,
+        30799200,
+        30711100
+      ],
+      "min_ns": 30711100,
+      "median_ns": 30799200,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        4402600,
+        4255400,
+        4170000
+      ],
+      "min_ns": 4170000,
+      "median_ns": 4255400,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        463947600,
+        465267700,
+        461446900
+      ],
+      "min_ns": 461446900,
+      "median_ns": 463947600,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        429003600,
+        428346000,
+        429037700
+      ],
+      "min_ns": 428346000,
+      "median_ns": 429003600,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        34059100,
+        33984900,
+        34003700
+      ],
+      "min_ns": 33984900,
+      "median_ns": 34003700,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        7573100,
+        7433800,
+        7635800
+      ],
+      "min_ns": 7433800,
+      "median_ns": 7573100,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        817989800,
+        818830500,
+        817549100
+      ],
+      "min_ns": 817549100,
+      "median_ns": 817989800,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        791663400,
+        783089100,
+        789942800
+      ],
+      "min_ns": 783089100,
+      "median_ns": 789942800,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        28094000,
+        28002000,
+        28599200
+      ],
+      "min_ns": 28002000,
+      "median_ns": 28094000,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1527900,
+        1530100,
+        1492900
+      ],
+      "min_ns": 1492900,
+      "median_ns": 1527900,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        168119900,
+        166217400,
+        166559100
+      ],
+      "min_ns": 166217400,
+      "median_ns": 166559100,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        140816400,
+        140150100,
+        140072300
+      ],
+      "min_ns": 140072300,
+      "median_ns": 140150100,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        36597100,
+        36563900,
+        36239400
+      ],
+      "min_ns": 36239400,
+      "median_ns": 36563900,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        10185100,
+        9902100,
+        9718900
+      ],
+      "min_ns": 9718900,
+      "median_ns": 9902100,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        1008650800,
+        1012631800,
+        1019516500
+      ],
+      "min_ns": 1008650800,
+      "median_ns": 1012631800,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        979627600,
+        982460000,
+        986431400
+      ],
+      "min_ns": 979627600,
+      "median_ns": 982460000,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        28372000,
+        28395500,
+        28683100
+      ],
+      "min_ns": 28372000,
+      "median_ns": 28395500,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2220200,
+        2436800,
+        2213600
+      ],
+      "min_ns": 2213600,
+      "median_ns": 2220200,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        243440900,
+        241513600,
+        245140800
+      ],
+      "min_ns": 241513600,
+      "median_ns": 243440900,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        223211700,
+        218074000,
+        222185400
+      ],
+      "min_ns": 218074000,
+      "median_ns": 222185400,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        30661200,
+        30134100,
+        30077000
+      ],
+      "min_ns": 30077000,
+      "median_ns": 30134100,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        3950700,
+        3859400,
+        3931300
+      ],
+      "min_ns": 3859400,
+      "median_ns": 3931300,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        418497800,
+        415981300,
+        415000100
+      ],
+      "min_ns": 415000100,
+      "median_ns": 415981300,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=2]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        391643800,
+        393428600,
+        391366500
+      ],
+      "min_ns": 391366500,
+      "median_ns": 391643800,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27329700,
+        27419300,
+        27165200
+      ],
+      "min_ns": 27165200,
+      "median_ns": 27329700,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        970900,
+        911800,
+        896900
+      ],
+      "min_ns": 896900,
+      "median_ns": 911800,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        96697400,
+        95761100,
+        96580400
+      ],
+      "min_ns": 95761100,
+      "median_ns": 96580400,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        70012400,
+        70137600,
+        70550800
+      ],
+      "min_ns": 70012400,
+      "median_ns": 70137600,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        31864700,
+        31321200,
+        31238400
+      ],
+      "min_ns": 31238400,
+      "median_ns": 31321200,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        5129500,
+        5120900,
+        5025800
+      ],
+      "min_ns": 5025800,
+      "median_ns": 5120900,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        522134500,
+        522836400,
+        521364000
+      ],
+      "min_ns": 521364000,
+      "median_ns": 522134500,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        491274900,
+        490166500,
+        494807100
+      ],
+      "min_ns": 490166500,
+      "median_ns": 491274900,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27715400,
+        27861200,
+        27600600
+      ],
+      "min_ns": 27600600,
+      "median_ns": 27715400,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1311700,
+        1243500,
+        1220800
+      ],
+      "min_ns": 1220800,
+      "median_ns": 1243500,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        133401000,
+        133836700,
+        133867100
+      ],
+      "min_ns": 133401000,
+      "median_ns": 133836700,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        107234500,
+        108075600,
+        107510600
+      ],
+      "min_ns": 107234500,
+      "median_ns": 107510600,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        28581100,
+        28726200,
+        28506000
+      ],
+      "min_ns": 28506000,
+      "median_ns": 28581100,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2184300,
+        2098700,
+        2064200
+      ],
+      "min_ns": 2064200,
+      "median_ns": 2098700,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        222171900,
+        222302600,
+        221751400
+      ],
+      "min_ns": 221751400,
+      "median_ns": 222171900,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=4]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        197086700,
+        194988900,
+        195345500
+      ],
+      "min_ns": 194988900,
+      "median_ns": 195345500,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        26979900,
+        27348800,
+        27523800
+      ],
+      "min_ns": 26979900,
+      "median_ns": 27348800,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        659800,
+        612200,
+        571200
+      ],
+      "min_ns": 571200,
+      "median_ns": 612200,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        63089900,
+        62750000,
+        63018300
+      ],
+      "min_ns": 62750000,
+      "median_ns": 63018300,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        35537600,
+        35577200,
+        36388300
+      ],
+      "min_ns": 35537600,
+      "median_ns": 35577200,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        29715500,
+        29932700,
+        29673800
+      ],
+      "min_ns": 29673800,
+      "median_ns": 29715500,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2964000,
+        2970000,
+        2686200
+      ],
+      "min_ns": 2686200,
+      "median_ns": 2964000,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        276257400,
+        275106100,
+        276569200
+      ],
+      "min_ns": 275106100,
+      "median_ns": 276257400,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        252657800,
+        251312800,
+        257036700
+      ],
+      "min_ns": 251312800,
+      "median_ns": 252657800,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27156400,
+        27582400,
+        27443400
+      ],
+      "min_ns": 27156400,
+      "median_ns": 27443400,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        855600,
+        771700,
+        797300
+      ],
+      "min_ns": 771700,
+      "median_ns": 797300,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        82658200,
+        82043300,
+        82208800
+      ],
+      "min_ns": 82043300,
+      "median_ns": 82208800,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        55080500,
+        55958500,
+        56274600
+      ],
+      "min_ns": 55080500,
+      "median_ns": 55958500,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        28324400,
+        28069600,
+        28097700
+      ],
+      "min_ns": 28069600,
+      "median_ns": 28097700,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1314300,
+        1202900,
+        1380100
+      ],
+      "min_ns": 1202900,
+      "median_ns": 1314300,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        127724200,
+        126440300,
+        127054300
+      ],
+      "min_ns": 126440300,
+      "median_ns": 127054300,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=8]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        99823600,
+        99355600,
+        99703000
+      ],
+      "min_ns": 99355600,
+      "median_ns": 99703000,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27487700,
+        27664000,
+        27542700
+      ],
+      "min_ns": 27487700,
+      "median_ns": 27542700,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        950800,
+        746600,
+        739900
+      ],
+      "min_ns": 739900,
+      "median_ns": 746600,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        55401900,
+        52923800,
+        52952300
+      ],
+      "min_ns": 52923800,
+      "median_ns": 52952300,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        26581100,
+        26363800,
+        26225000
+      ],
+      "min_ns": 26225000,
+      "median_ns": 26363800,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        29081800,
+        29779000,
+        29807800
+      ],
+      "min_ns": 29081800,
+      "median_ns": 29779000,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2994700,
+        2696800,
+        2332200
+      ],
+      "min_ns": 2332200,
+      "median_ns": 2696800,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        203776900,
+        202079400,
+        202401300
+      ],
+      "min_ns": 202079400,
+      "median_ns": 202401300,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        176908700,
+        176099100,
+        178094800
+      ],
+      "min_ns": 176099100,
+      "median_ns": 176908700,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27399900,
+        27457900,
+        27572300
+      ],
+      "min_ns": 27399900,
+      "median_ns": 27457900,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1139200,
+        1085300,
+        890100
+      ],
+      "min_ns": 890100,
+      "median_ns": 1085300,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        67909800,
+        65633500,
+        66452800
+      ],
+      "min_ns": 65633500,
+      "median_ns": 66452800,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        39750200,
+        39374200,
+        39863500
+      ],
+      "min_ns": 39374200,
+      "median_ns": 39750200,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27547100,
+        27821900,
+        27758300
+      ],
+      "min_ns": 27547100,
+      "median_ns": 27758300,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1403700,
+        1269000,
+        1299200
+      ],
+      "min_ns": 1269000,
+      "median_ns": 1299200,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        99819600,
+        97560400,
+        97219800
+      ],
+      "min_ns": 97219800,
+      "median_ns": 97560400,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=12]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        71751900,
+        70997300,
+        72028300
+      ],
+      "min_ns": 70997300,
+      "median_ns": 71751900,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27119500,
+        27306400,
+        27099200
+      ],
+      "min_ns": 27099200,
+      "median_ns": 27119500,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        835900,
+        742300,
+        749800
+      ],
+      "min_ns": 742300,
+      "median_ns": 749800,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        48880000,
+        47744600,
+        46877700
+      ],
+      "min_ns": 46877700,
+      "median_ns": 47744600,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        20758400,
+        21000400,
+        20660300
+      ],
+      "min_ns": 20660300,
+      "median_ns": 20758400,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        29155000,
+        30123500,
+        29428600
+      ],
+      "min_ns": 29155000,
+      "median_ns": 29428600,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2842200,
+        2536700,
+        2219700
+      ],
+      "min_ns": 2219700,
+      "median_ns": 2536700,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        165851700,
+        168842100,
+        163094000
+      ],
+      "min_ns": 163094000,
+      "median_ns": 165851700,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        136434000,
+        136585100,
+        136264700
+      ],
+      "min_ns": 136264700,
+      "median_ns": 136434000,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27519200,
+        27706700,
+        27750500
+      ],
+      "min_ns": 27519200,
+      "median_ns": 27706700,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        911600,
+        869700,
+        921300
+      ],
+      "min_ns": 869700,
+      "median_ns": 911600,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        58535900,
+        57997100,
+        57760600
+      ],
+      "min_ns": 57760600,
+      "median_ns": 57997100,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        31400400,
+        31327600,
+        31356700
+      ],
+      "min_ns": 31327600,
+      "median_ns": 31356700,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27923500,
+        28103200,
+        28086600
+      ],
+      "min_ns": 27923500,
+      "median_ns": 28086600,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1548900,
+        1452700,
+        1367400
+      ],
+      "min_ns": 1367400,
+      "median_ns": 1452700,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        85392200,
+        82010900,
+        81635600
+      ],
+      "min_ns": 81635600,
+      "median_ns": 82010900,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=16]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        55640200,
+        55923800,
+        54943100
+      ],
+      "min_ns": 54943100,
+      "median_ns": 55640200,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27425500,
+        27585400,
+        27427400
+      ],
+      "min_ns": 27425500,
+      "median_ns": 27427400,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        884200,
+        898900,
+        905800
+      ],
+      "min_ns": 884200,
+      "median_ns": 898900,
+      "triples_checked": 150121,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        46886000,
+        43789600,
+        44450000
+      ],
+      "min_ns": 43789600,
+      "median_ns": 44450000,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 3,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        17286500,
+        18049900,
+        18291500
+      ],
+      "min_ns": 17286500,
+      "median_ns": 18049900,
+      "triples_checked": 15023170,
+      "count_unit": "rows",
+      "solutions_count": 2,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        28570700,
+        28799600,
+        29459700
+      ],
+      "min_ns": 28570700,
+      "median_ns": 28799600,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        2822100,
+        2538500,
+        2124400
+      ],
+      "min_ns": 2124400,
+      "median_ns": 2538500,
+      "triples_checked": 1799023,
+      "count_unit": "rows",
+      "solutions_count": 5,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        142074900,
+        139213300,
+        140886900
+      ],
+      "min_ns": 139213300,
+      "median_ns": 140886900,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 29,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        112495400,
+        112002500,
+        112984100
+      ],
+      "min_ns": 112002500,
+      "median_ns": 112495400,
+      "triples_checked": 179965686,
+      "count_unit": "rows",
+      "solutions_count": 7,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27406700,
+        27506100,
+        28756100
+      ],
+      "min_ns": 27406700,
+      "median_ns": 27506100,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1101400,
+        1059900,
+        1070700
+      ],
+      "min_ns": 1059900,
+      "median_ns": 1070700,
+      "triples_checked": 280233,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        56387600,
+        52386200,
+        52756400
+      ],
+      "min_ns": 52386200,
+      "median_ns": 52756400,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 33,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        26260700,
+        26408100,
+        25679600
+      ],
+      "min_ns": 25679600,
+      "median_ns": 26260700,
+      "triples_checked": 27977184,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "cold",
+      "times_ns": [
+        27773600,
+        28511700,
+        28075200
+      ],
+      "min_ns": 27773600,
+      "median_ns": 28075200,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 10000,
+      "mode": "warm",
+      "times_ns": [
+        1466300,
+        1481300,
+        1461700
+      ],
+      "min_ns": 1461700,
+      "median_ns": 1466300,
+      "triples_checked": 547588,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "cube-root[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "cold",
+      "times_ns": [
+        75406600,
+        72319000,
+        73488700
+      ],
+      "min_ns": 72319000,
+      "median_ns": 73488700,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    },
+    {
+      "solver": "native[m=15561,t=20]",
+      "modulus": 15561,
+      "k": 42,
+      "bound": 100000,
+      "mode": "warm",
+      "times_ns": [
+        46781700,
+        45942700,
+        50907400
+      ],
+      "min_ns": 45942700,
+      "median_ns": 46781700,
+      "triples_checked": 54690365,
+      "count_unit": "rows",
+      "solutions_count": 0,
+      "reference": "native[m=9]"
+    }
+  ]
+}

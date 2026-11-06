@@ -225,6 +225,22 @@ with 819 as follows:
 | B = 10,000 | 1.81× faster | 2.25× slower (one-time table build) |
 | B = 100,000 | 1.50× faster | 1.46× faster |
 
+From [the thread suite](benchmarks/results/2026-11-05-native-threads-1980cd7.json),
+recorded at commit `1980cd7` on the same machine (m = 15561, summed over
+k = 3, 29, 33, 42). Speedups are relative to one thread:
+
+| Threads | B = 100,000 warm | B = 100,000 cold | B = 10,000 warm |
+|---|---|---|---|
+| 2 | 2.00× | 1.96× | 1.93× |
+| 4 | 4.02× | 3.70× | 3.63× |
+| 8 | 7.83× | 6.57× | 5.98× |
+| 16 | 14.24× | 10.20× | 6.02× |
+| 20 | 17.08× | 11.57× | 5.69× |
+
+Row and solution counts are identical at every thread count. Larger searches
+gain the most: at B = 10,000 there is no further gain past about 8 threads.
+Cold runs gain less because the lookup table is built on one thread.
+
 ## Layout
 
 ```text
